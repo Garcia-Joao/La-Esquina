@@ -14,9 +14,34 @@ export const events: EventData[] = [
         hour: "20:00",
         category: "Jazz",
         image: poster1,
-        bands: [
-            "Blue Quartet",
-            "Lucas Martins Trio"
+        artists: [
+
+            {
+
+                id: 1,
+
+                name: "Black River",
+
+                description: "Blues Rock",
+
+                instagram: "https://instagram.com/blackriver",
+
+                spotify: "https://spotify.com/..."
+
+            },
+
+            {
+
+                id: 2,
+
+                name: "Vintage Trio",
+
+                description: "Jazz • Soul",
+
+                instagram: "https://instagram.com/vintagetrio"
+
+            }
+
         ],
         price: "R$ 30"
     },
@@ -29,9 +54,34 @@ export const events: EventData[] = [
         hour: "21:30",
         category: "Rock",
         image: poster2,
-        bands: [
-            "Black River",
-            "Rust Machine"
+        artists: [
+
+            {
+
+                id: 1,
+
+                name: "Black River",
+
+                description: "Blues Rock",
+
+                instagram: "https://instagram.com/blackriver",
+
+                spotify: "https://spotify.com/..."
+
+            },
+
+            {
+
+                id: 2,
+
+                name: "Vintage Trio",
+
+                description: "Jazz • Soul",
+
+                instagram: "https://instagram.com/vintagetrio"
+
+            }
+
         ],
         price: "R$ 35"
     },
@@ -44,8 +94,34 @@ export const events: EventData[] = [
         hour: "18:00",
         category: "Samba",
         image: poster3,
-        bands: [
-            "Samba do Largo"
+        artists: [
+
+            {
+
+                id: 1,
+
+                name: "Black River",
+
+                description: "Blues Rock",
+
+                instagram: "https://instagram.com/blackriver",
+
+                spotify: "https://spotify.com/..."
+
+            },
+
+            {
+
+                id: 2,
+
+                name: "Vintage Trio",
+
+                description: "Jazz • Soul",
+
+                instagram: "https://instagram.com/vintagetrio"
+
+            }
+
         ],
         price: "Entrada Gratuita"
     },
@@ -58,8 +134,154 @@ export const events: EventData[] = [
         hour: "20:30",
         category: "Blues",
         image: poster4,
-        bands: [
-            "Old Street Blues"
+        artists: [
+
+            {
+
+                id: 1,
+
+                name: "Black River",
+
+                description: "Blues Rock",
+
+                instagram: "https://instagram.com/blackriver",
+
+                spotify: "https://spotify.com/..."
+
+            },
+
+            {
+
+                id: 2,
+
+                name: "Vintage Trio",
+
+                description: "Jazz • Soul",
+
+                instagram: "https://instagram.com/vintagetrio"
+
+            }
+
+        ],
+        price: "R$ 25"
+    },
+        {
+        id: 5,
+        title: "Blues Session",
+        description:
+            "Noite especial de Blues.",
+        date: "26 Julho",
+        hour: "20:30",
+        category: "Blues",
+        image: poster4,
+        artists: [
+
+            {
+
+                id: 1,
+
+                name: "Black River",
+
+                description: "Blues Rock",
+
+                instagram: "https://instagram.com/blackriver",
+
+                spotify: "https://spotify.com/..."
+
+            },
+
+            {
+
+                id: 2,
+
+                name: "Vintage Trio",
+
+                description: "Jazz • Soul",
+
+                instagram: "https://instagram.com/vintagetrio"
+
+            }
+
+        ],
+        price: "R$ 25"
+    },
+        {
+        id: 6,
+        title: "Blues Session",
+        description:
+            "Noite especial de Blues.",
+        date: "26 Julho",
+        hour: "20:30",
+        category: "Blues",
+        image: poster4,
+        artists: [
+
+            {
+
+                id: 1,
+
+                name: "Black River",
+
+                description: "Blues Rock",
+
+                instagram: "https://instagram.com/blackriver",
+
+                spotify: "https://spotify.com/..."
+
+            },
+
+            {
+
+                id: 2,
+
+                name: "Vintage Trio",
+
+                description: "Jazz • Soul",
+
+                instagram: "https://instagram.com/vintagetrio"
+
+            }
+
+        ],
+        price: "R$ 25"
+    },
+        {
+        id: 7,
+        title: "Blues Session",
+        description:
+            "Noite especial de Blues.",
+        date: "26 Julho",
+        hour: "20:30",
+        category: "Blues",
+        image: poster4,
+        artists: [
+
+            {
+
+                id: 1,
+
+                name: "Black River",
+
+                description: "Blues Rock",
+
+                instagram: "https://instagram.com/blackriver",
+
+                spotify: "https://spotify.com/..."
+
+            },
+
+            {
+
+                id: 2,
+
+                name: "Vintage Trio",
+
+                description: "Jazz • Soul",
+
+                instagram: "https://instagram.com/vintagetrio"
+
+            }
+
         ],
         price: "R$ 25"
     }

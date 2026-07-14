@@ -1,3 +1,5 @@
+/* ================= Overlay ================= */
+
 .drawer-overlay {
 
     position: fixed;
@@ -10,347 +12,583 @@
 
     align-items: center;
 
-    background: rgba(0, 0, 0, .55);
+    padding: 40px;
+
+    background: rgba(0,0,0,.55);
 
     backdrop-filter: blur(10px);
 
-    opacity: 0;
+    z-index: 5000;
 
-    pointer-events: none;
-
-    transition: opacity .3s ease;
-
-    z-index: 1000;
+    animation: overlayFade .25s ease;
 
 }
 
-.drawer-overlay.open {
+/* ================= Drawer ================= */
 
-    opacity: 1;
+.drawer{
 
-    pointer-events: all;
+    position:relative;
 
-}
+    display:flex;
 
-.drawer {
+    align-items:center;
 
-    display: flex;
+    justify-content:center;
 
-    align-items: center;
+    gap:60px;
 
-    gap: 48px;
+    width:min(1350px,92vw);
 
-    max-width: 1200px;
-
-    width: calc(100vw - 80px);
-
-    max-height: calc(100vh - 80px);
-
-    position: relative;
+    max-height:90vh;
 
 }
 
-/* ---------- Poster ---------- */
+/* ================= Poster ================= */
 
-.drawer-poster {
+.drawer-poster{
 
-    flex-shrink: 0;
+    flex-shrink:0;
 
-    width: 360px;
+    width:360px;
 
-    animation: posterIn .35s ease;
+    animation:posterIn .35s ease;
 
 }
 
-.drawer-poster img {
+.drawer-poster img{
 
-    width: 100%;
+    width:100%;
 
-    display: block;
+    display:block;
 
-    border: 12px solid #efe8d8;
+    border-radius:12px;
+
+    overflow:hidden;
 
     box-shadow:
+
+        0 25px 70px rgba(0,0,0,.45),
+
+        0 0 0 1px rgba(255,255,255,.04);
+
+    transform:rotate(-2deg);
+
+    transition:
+
+        transform .3s,
+
+        box-shadow .3s;
+
+}
+
+.drawer-poster img:hover{
+
+    transform:
+
+        rotate(-1deg)
+
+        scale(1.02);
+
+}
+
+/* ================= Painel ================= */
+
+.drawer-content{
+
+    flex:1;
+
+    max-width:760px;
+
+    max-height:85vh;
+
+    overflow-y:auto;
+
+    padding:42px;
+
+    border-radius:22px;
+
+    border:1px solid var(--border);
+
+    background:
+
+        linear-gradient(
+
+            180deg,
+
+            rgba(34,12,12,.98),
+
+            rgba(18,7,7,.98)
+
+        );
+
+    box-shadow:
+
         0 30px 80px rgba(0,0,0,.45);
 
-    transform: rotate(-2deg);
+    animation:panelIn .35s ease;
 
 }
 
-/* ---------- Painel ---------- */
+.drawer-content h2{
 
-.drawer-content {
+    font-size:2.6rem;
 
-    flex: 1;
-
-    background: linear-gradient(
-        180deg,
-        #1c0d0d,
-        #120707
-    );
-
-    border: 1px solid var(--border);
-
-    border-radius: 18px;
-
-    padding: 40px;
-
-    overflow-y: auto;
-
-    max-height: 85vh;
-
-    box-shadow: var(--shadow);
-
-    animation: panelIn .35s ease;
+    margin:12px 0 22px;
 
 }
 
-.drawer-content h2 {
+.category{
 
-    margin: 12px 0 20px;
+    color:var(--gold-light);
 
-    font-size: 2.4rem;
+    text-transform:uppercase;
 
-}
+    letter-spacing:4px;
 
-.category {
+    font-size:.8rem;
 
-    color: var(--gold-light);
-
-    text-transform: uppercase;
-
-    letter-spacing: 3px;
-
-    font-size: .85rem;
+    font-weight:700;
 
 }
 
-.drawer-content p {
+.drawer-content p{
 
-    margin-top: 10px;
-
-    margin-bottom: 30px;
+    margin-bottom:36px;
 
 }
 
-.drawer-info {
+/* ================= Informações ================= */
 
-    display: grid;
+.drawer-info{
 
-    grid-template-columns: repeat(3, 1fr);
+    display:grid;
 
-    gap: 20px;
+    grid-template-columns:repeat(3,1fr);
 
-    margin-bottom: 32px;
+    gap:18px;
 
-}
-
-.drawer-info div {
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 6px;
+    margin-bottom:36px;
 
 }
 
-.drawer-info strong {
+.drawer-info div{
 
-    color: var(--gold-light);
+    background:rgba(255,255,255,.03);
 
-    font-size: .9rem;
+    border:1px solid rgba(255,255,255,.05);
 
-}
+    border-radius:14px;
 
-.drawer-info span {
+    padding:18px;
 
-    color: var(--cream);
+    display:flex;
 
-}
+    flex-direction:column;
 
-.bands {
-
-    margin-top: 10px;
+    gap:8px;
 
 }
 
-.bands h3 {
+.drawer-info strong{
 
-    margin-bottom: 14px;
+    color:var(--gold-light);
 
-    color: var(--gold-light);
-
-}
-
-.bands ul {
-
-    padding-left: 20px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 8px;
+    font-size:.85rem;
 
 }
 
-/* ---------- Botão ---------- */
+.drawer-info span{
 
-.drawer-content button {
-
-    margin-top: 40px;
-
-    background: var(--gold-light);
-
-    color: var(--wine);
-
-    padding: 16px 32px;
-
-    border-radius: 999px;
-
-    font-weight: 700;
-
-    transition: .25s;
+    color:var(--cream);
 
 }
 
-.drawer-content button:hover {
+/* ================= Bandas ================= */
 
-    transform: translateY(-3px);
+.bands{
 
-    background: var(--cream);
-
-}
-
-/* ---------- Fechar ---------- */
-
-.drawer-close {
-
-    position: absolute;
-
-    top: -20px;
-
-    right: -20px;
-
-    width: 46px;
-
-    height: 46px;
-
-    border-radius: 50%;
-
-    background: rgba(255,255,255,.08);
-
-    color: white;
-
-    border: none;
-
-    font-size: 1.2rem;
-
-    cursor: pointer;
-
-    transition: .25s;
+    margin-top:12px;
 
 }
 
-.drawer-close:hover {
+.bands h3{
 
-    background: var(--gold-light);
+    color:var(--gold-light);
 
-    color: var(--wine);
-
-}
-
-/* ---------- Scroll ---------- */
-
-.drawer-content::-webkit-scrollbar {
-
-    width: 8px;
+    margin-bottom:14px;
 
 }
 
-.drawer-content::-webkit-scrollbar-thumb {
+.bands ul{
 
-    background: var(--gold);
+    list-style:none;
 
-    border-radius: 20px;
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
 
 }
 
-/* ---------- Responsivo ---------- */
+.bands li{
 
-@media (max-width: 900px) {
+    position:relative;
 
-    .drawer {
+    padding-left:18px;
 
-        flex-direction: column;
+}
 
-        width: calc(100vw - 30px);
+.bands li::before{
 
-        gap: 24px;
+    content:"•";
+
+    position:absolute;
+
+    left:0;
+
+    color:var(--gold-light);
+
+}
+
+/* ================= Botões ================= */
+
+.drawer-actions{
+
+    display:flex;
+
+    gap:18px;
+
+    margin-top:42px;
+
+}
+
+.drawer-actions button{
+
+    padding:16px 34px;
+
+    border-radius:999px;
+
+    font-weight:700;
+
+    transition:.25s;
+
+}
+
+.drawer-actions .primary{
+
+    background:var(--gold-light);
+
+    color:var(--wine);
+
+}
+
+.drawer-actions .primary:hover{
+
+    transform:translateY(-3px);
+
+    background:var(--cream);
+
+}
+
+.drawer-actions .secondary{
+
+    background:transparent;
+
+    color:var(--gold-light);
+
+    border:1px solid var(--gold-light);
+
+}
+
+.drawer-actions .secondary:hover{
+
+    background:rgba(255,255,255,.05);
+
+}
+
+/* ================= Fechar ================= */
+
+.drawer-close{
+
+    position:absolute;
+
+    top:-18px;
+
+    right:-18px;
+
+    width:46px;
+
+    height:46px;
+
+    border-radius:50%;
+
+    border:none;
+
+    background:rgba(255,255,255,.08);
+
+    color:white;
+
+    cursor:pointer;
+
+    font-size:1.2rem;
+
+    transition:.25s;
+
+}
+
+.drawer-close:hover{
+
+    background:var(--gold-light);
+
+    color:var(--wine);
+
+}
+
+/* ================= Scroll ================= */
+
+.drawer-content::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+.drawer-content::-webkit-scrollbar-thumb{
+
+    background:var(--gold);
+
+    border-radius:20px;
+
+}
+
+/* ================= Responsivo ================= */
+
+@media (max-width:1000px){
+
+    .drawer{
+
+        flex-direction:column;
+
+        width:100%;
+
+        gap:28px;
 
     }
 
-    .drawer-poster {
+    .drawer-poster{
 
-        width: 260px;
-
-    }
-
-    .drawer-content {
-
-        width: 100%;
-
-        max-height: 55vh;
+        width:260px;
 
     }
 
-    .drawer-info {
+    .drawer-content{
 
-        grid-template-columns: 1fr;
+        width:100%;
 
-    }
-
-}
-
-/* ---------- Animações ---------- */
-
-@keyframes posterIn {
-
-    from {
-
-        opacity: 0;
-
-        transform: translateX(-40px);
+        max-height:55vh;
 
     }
 
-    to {
+    .drawer-info{
 
-        opacity: 1;
+        grid-template-columns:1fr;
 
-        transform: translateX(0);
+    }
+
+    .drawer-actions{
+
+        flex-direction:column;
 
     }
 
 }
 
-@keyframes panelIn {
+/* ================= Animações ================= */
 
-    from {
+@keyframes overlayFade{
 
-        opacity: 0;
+    from{
 
-        transform: translateX(40px);
+        opacity:0;
+
+    }
+
+    to{
+
+        opacity:1;
 
     }
 
-    to {
+}
 
-        opacity: 1;
+@keyframes posterIn{
 
-        transform: translateX(0);
+    from{
+
+        opacity:0;
+
+        transform:translateX(-50px);
 
     }
+
+    to{
+
+        opacity:1;
+
+        transform:translateX(0);
+
+    }
+
+}
+
+@keyframes panelIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateX(50px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateX(0);
+
+    }
+
+}
+
+
+/* ===== Artists ===== */
+
+.artists{
+
+    margin-top:42px;
+
+}
+
+.artist-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:14px;
+
+}
+
+.artist-row{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:14px 18px;
+
+    border-radius:14px;
+
+    border:1px solid rgba(255,255,255,.05);
+
+    background:rgba(255,255,255,.02);
+
+    transition:.25s;
+
+}
+
+.artist-row:hover{
+
+    border-color:var(--gold);
+
+}
+
+.artist-button{
+
+    flex:1;
+
+    background:none;
+
+    border:none;
+
+    text-align:left;
+
+    color:inherit;
+
+    cursor:pointer;
+
+}
+
+.artist-button strong{
+
+    display:block;
+
+    font-size:1rem;
+
+    margin-bottom:4px;
+
+}
+
+.artist-button small{
+
+    color:var(--text-muted);
+
+    font-size:.85rem;
+
+}
+
+.artist-links{
+
+    display:flex;
+
+    gap:10px;
+
+    opacity:0;
+
+    transform:translateX(15px);
+
+    pointer-events:none;
+
+    transition:.25s;
+
+}
+
+.artist-row.open .artist-links{
+
+    opacity:1;
+
+    transform:translateX(0);
+
+    pointer-events:all;
+
+}
+
+.artist-links a{
+
+    padding:8px 12px;
+
+    border-radius:999px;
+
+    background:rgba(247,171,34,.12);
+
+    border:1px solid rgba(247,171,34,.35);
+
+    color:var(--gold-light);
+
+    font-size:.8rem;
+
+    transition:.25s;
+
+}
+
+.artist-links a:hover{
+
+    background:var(--gold-light);
+
+    color:var(--wine);
 
 }

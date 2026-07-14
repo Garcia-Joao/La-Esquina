@@ -1,21 +1,121 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import "./mural.css";
 
 import Container from "../../common/container/container";
 import EventDrawer from "./EventDrawer";
-
 import Poster from "./Poster";
+
 import { generatePosterLayout } from "./layout";
 
-import { type EventData } from "../../../types/event";
+import type { EventData } from "../../../types/event";
 import { events } from "../../../data/events";
 
 export default function Mural() {
 
+    const boardRef = useRef<HTMLDivElement>(null);
+
+    const [boardSize, setBoardSize] = useState({
+
+        width: 1000,
+
+        height: 820
+
+    });
+
+    useEffect(() => {
+
+        if (!boardRef.current)
+            return;
+
+        const resize = () => {
+
+            if (!boardRef.current)
+                return;
+
+            const width = boardRef.current.clientWidth;
+
+            const height = boardRef.current.clientHeight;
+
+            setBoardSize(previous => {
+
+                if (
+
+                    previous.width === width &&
+
+                    previous.height === height
+
+                ) {
+
+                    return previous;
+
+                }
+
+                return {
+
+                    width,
+
+                    height
+
+                };
+
+            });
+
+        };
+
+        resize();
+
+        const observer = new ResizeObserver(resize);
+
+        observer.observe(boardRef.current);
+
+        return () => observer.disconnect();
+
+    }, []);
+
+    // Quantidade de colunas utilizada também para definir a altura
+    const columnCount =
+        events.length <= 4 ? 2 :
+        events.length <= 6 ? 3 :
+        events.length <= 9 ? 4 :
+        events.length <= 12 ? 5 :
+        6;
+
+    const rowCount = Math.ceil(events.length / columnCount);
+
+    // Cresce conforme aumenta a agenda
+    const boardHeight = Math.max(
+
+        820,
+
+        rowCount * 340
+
+    );
+
     const layouts = useMemo(
-        () => generatePosterLayout(events.length, 900, 700),
-        []
+
+        () =>
+
+            generatePosterLayout(
+
+                events.length,
+
+                boardSize.width,
+
+                boardHeight
+
+            ),
+
+        [
+
+            boardSize.width,
+
+            boardHeight,
+
+            events.length
+
+        ]
+
     );
 
     const [hovered, setHovered] = useState<number | null>(null);
@@ -24,7 +124,13 @@ export default function Mural() {
 
     return (
 
-        <section className="mural-section" id="eventos">
+        <section
+
+            className="mural-section"
+
+            id="eventos"
+
+        >
 
             <Container>
 
@@ -38,29 +144,49 @@ export default function Mural() {
 
                 <div className="mural-layout">
 
-                    <div className="poster-board">
+                    <div
 
-                        {events.map((event, index) => (
+                        ref={boardRef}
 
-                            <Poster
+                        className="poster-board"
 
-                                key={event.id}
+                        style={{
 
-                                event={event}
+                            height: boardHeight
 
-                                layout={layouts[index]}
+                        }}
 
-                                active={hovered === event.id}
+                    >
 
-                                onHover={() => setHovered(event.id)}
+                        {
 
-                                onLeave={() => setHovered(null)}
+                            events.map((event, index) =>
 
-                                onClick={() => setSelected(event)}
+                                layouts[index] && (
 
-                            />
+                                    <Poster
 
-                        ))}
+                                        key={event.id}
+
+                                        event={event}
+
+                                        layout={layouts[index]}
+
+                                        active={hovered === event.id}
+
+                                        onHover={() => setHovered(event.id)}
+
+                                        onLeave={() => setHovered(null)}
+
+                                        onClick={() => setSelected(event)}
+
+                                    />
+
+                                )
+
+                            )
+
+                        }
 
                     </div>
 
