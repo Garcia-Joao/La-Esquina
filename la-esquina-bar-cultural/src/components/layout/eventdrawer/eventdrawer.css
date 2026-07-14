@@ -1,0 +1,215 @@
+.drawer-overlay{
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.45);
+
+    backdrop-filter:blur(8px);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:.35s;
+
+    z-index:999;
+
+}
+
+.drawer-overlay.open{
+
+    opacity:1;
+
+    pointer-events:auto;
+
+}
+
+.drawer{
+
+    position:fixed;
+
+    inset:0;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:70px;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:.35s;
+
+    z-index:1000;
+
+}
+
+.drawer.open{
+
+    opacity:1;
+
+    pointer-events:auto;
+
+}
+
+.drawer-poster{
+
+    width:340px;
+
+    flex-shrink:0;
+
+    animation:posterIn .35s ease;
+
+}
+
+.drawer-poster img{
+
+    width:100%;
+
+    display:block;
+
+    border-radius:10px;
+
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.55);
+
+}
+
+.drawer-content{
+
+    width:540px;
+
+    max-height:80vh;
+
+    overflow:auto;
+
+    background:#140708;
+
+    border:1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:42px;
+
+    box-shadow:
+        0 25px 70px rgba(0,0,0,.45);
+
+    animation:cardIn .4s ease;
+
+}
+
+.drawer-content h2{
+
+    margin:8px 0 18px;
+
+}
+
+.drawer-info{
+
+    display:flex;
+
+    gap:32px;
+
+    margin:32px 0;
+
+}
+
+.drawer-info div{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+
+}
+
+.drawer button{
+
+    margin-top:40px;
+
+}
+
+.drawer-close{
+
+    position:absolute;
+
+    top:40px;
+
+    right:40px;
+
+    width:48px;
+
+    height:48px;
+
+    border-radius:50%;
+
+    border:none;
+
+    background:rgba(255,255,255,.08);
+
+    color:white;
+
+    font-size:22px;
+
+}
+
+.drawer-close:hover{
+
+    background:var(--gold-light);
+
+    color:var(--wine);
+
+}
+
+@keyframes posterIn{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateX(-40px)
+            scale(.95);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateX(0)
+            scale(1);
+
+    }
+
+}
+
+@keyframes cardIn{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateX(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateX(0);
+
+    }
+
+}

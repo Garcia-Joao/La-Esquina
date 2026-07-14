@@ -1,0 +1,37 @@
+:root {
+
+    /* Paleta */
+
+    --cream: #FEEF9E;
+    --gold-light: #F7AB22;
+    --gold: #CB821B;
+    --brown: #943402;
+    --wine: #641214;
+    --red: #C6382E;
+    --pink: #F89697;
+    --blue: #277289;
+    --blue-light: #7CC0C3;
+    --black: #010101;
+
+    /* Interface */
+
+    --background: var(--black);
+    --surface: #180909;
+    --surface-light: #2A0E10;
+
+    --text: var(--cream);
+    --text-muted: #E8D99A;
+
+    --border: rgba(247,171,34,.15);
+
+    --container-width: 1680px;
+
+    --radius: 14px;
+
+    --shadow:
+        0 12px 40px rgba(0,0,0,.45);
+
+    --transition:
+        .35s cubic-bezier(.2,.8,.2,1);
+
+}
