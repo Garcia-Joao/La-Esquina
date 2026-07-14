@@ -1,27 +1,40 @@
-import Container from "../../common/container/container";
 import logo from "../../../assets/images/CircleLogo.png";
 import "./navbar.css";
 
 export default function Navbar() {
+
     return (
+
         <header className="navbar">
 
-            <Container className="navbar-content">
+            <div className="navbar-content">
 
                 <a href="#" className="logo">
 
                     <img
                         src={logo}
-                        alt="La Esquina Bar Cultural"
+                        alt="La Esquina"
                     />
+
+                    <div className="logo-text">
+
+                        <span className="subtitle">
+                            BAR CULTURAL
+                        </span>
+
+                        <span className="title">
+                            LA ESQUINA
+                        </span>
+
+                    </div>
 
                 </a>
 
                 <nav>
 
                     <a href="#sobre">Sobre</a>
-                    <a href="#eventos">Eventos</a>
-                    <a href="#cardapio">Cardapio</a>
+                    <a href="#eventos">Agenda</a>
+                    <a href="#cardapio">Cardápio</a>
                     <a href="#galeria">Galeria</a>
                     <a href="#contato">Contato</a>
 
@@ -29,12 +42,14 @@ export default function Navbar() {
 
                 <button className="reserve-button">
 
-                    Reservar Mesa
+                    Reservar
 
                 </button>
 
-            </Container>
+            </div>
 
         </header>
+
     );
+
 }

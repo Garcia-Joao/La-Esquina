@@ -1,14 +1,10 @@
-import Container from "../../common/container/container";
-
 import hero from "../../../assets/images/hero.png";
 import logo from "../../../assets/images/RecLogo.png";
 
 import "./hero.css";
 
 export default function Hero() {
-
     return (
-
         <section className="hero">
 
             <img
@@ -17,71 +13,58 @@ export default function Hero() {
                 alt="La Esquina"
             />
 
-            <div className="overlay"/>
+            <div className="overlay" />
 
+            <div className="hero-container">
 
-            <Container className="container-wide">
+                <div className="hero-left">
 
-                <div className="hero-content">
-
-
-                    <img
-                        src={logo}
-                        className="hero-logo"
-                        alt="La Esquina"
-                    />
-
-
-                    <span className="subtitle">
-
-                        Bar Cultural • São Roque
-
+                    <span className="hero-location">
+                        BAR CULTURAL • SÃO ROQUE
                     </span>
 
-
                     <h1>
-
-                        A esquina onde
-                        a cidade se encontra.
-
+                        A ESQUINA
+                        <br />
+                        ONDE A
+                        <br />
+                        CIDADE
+                        <br />
+                        SE ENCONTRA.
                     </h1>
 
-
                     <p>
-
-                        Música, cerveja artesanal,
-                        gastronomia criativa, livros,
-                        vinis e arte em um espaço
-                        feito para encontros reais.
-
+                        Música ao vivo, cervejas artesanais,
+                        gastronomia criativa, livros, vinis
+                        e encontros que acontecem naturalmente.
                     </p>
-
 
                     <div className="buttons">
 
                         <button className="primary">
-
                             Ver Agenda
-
                         </button>
 
-
                         <button className="secondary">
-
                             Conheça a La Esquina
-
                         </button>
 
                     </div>
 
+                </div>
+
+                <div className="hero-right">
+
+                    <img
+                        src={logo}
+                        alt="La Esquina"
+                        className="hero-logo"
+                    />
 
                 </div>
 
-            </Container>
-
+            </div>
 
         </section>
-
     );
-
 }

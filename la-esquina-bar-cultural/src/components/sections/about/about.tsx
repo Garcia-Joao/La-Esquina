@@ -1,61 +1,75 @@
-import Container from "../../common/container/container";
-
 import "./about.css";
 
+export default function About() {
 
-export default function About(){
+    return (
 
-return (
+        <section
+            id="sobre"
+            className="about"
+        >
 
-<section 
-id="sobre"
-className="about"
->
+            <div className="about-grid">
 
-<Container>
+                <div className="about-left">
 
-<div className="about-content">
+                    <span>
+                        O CONCEITO
+                    </span>
 
+                    <h2>
 
-<span>
-O conceito
-</span>
+                        MUITO MAIS
+                        <br />
+                        QUE UM BAR.
 
+                    </h2>
 
-<h2>
+                    <p>
 
-Muito mais que um bar.
-Uma esquina de encontros.
+                        A La Esquina nasce da ideia mais simples e poderosa das cidades:
+                        a esquina como ponto de encontro. Um lugar onde pessoas, histórias,
+                        música e gastronomia se cruzam naturalmente.
 
-</h2>
+                    </p>
 
+                    <p>
 
-<p>
+                        Mais do que servir boa comida e cervejas artesanais, queremos criar
+                        experiências. Um espaço para descobrir novos artistas, conversar sem
+                        pressa, ouvir um disco inteiro e fazer parte da vida cultural da cidade.
 
-A La Esquina nasce da ideia mais simples
-e poderosa das cidades: a esquina como lugar
-de encontro.
+                    </p>
 
-</p>
+                </div>
 
+                <div className="about-right">
 
-<p>
+                    <div className="quote">
 
-Um espaço onde música, cerveja artesanal,
-gastronomia criativa, livros, vinis e artes
-visuais se cruzam para criar experiências
-reais e com identidade.
+                        "Toda cidade tem uma esquina.
+                        A nossa acontece aqui."
 
-</p>
+                    </div>
 
+                    <div className="divider" />
 
-</div>
+                    <div className="keywords">
 
-</Container>
+                        <span>MÚSICA</span>
+                        <span>VINIL</span>
+                        <span>ARTE</span>
+                        <span>CERVEJA</span>
+                        <span>ENCONTROS</span>
 
+                    </div>
 
-</section>
+                </div>
 
-)
+            </div>
+
+        </section>
+
+    );
 
 }
