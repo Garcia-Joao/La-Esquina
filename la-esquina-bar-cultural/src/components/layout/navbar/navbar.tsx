@@ -1,4 +1,4 @@
-import Container from "../../ui/container/container";
+import Container from "../../common/container/container";
 import logo from "../../../assets/images/CircleLogo.png";
 import "./navbar.css";
 

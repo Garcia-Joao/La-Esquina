@@ -1,4 +1,4 @@
-import Container from "../../ui/container/container";
+import Container from "../../common/container/container";
 
 import hero from "../../../assets/images/hero.png";
 import logo from "../../../assets/images/RecLogo.png";

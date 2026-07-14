@@ -2,18 +2,7 @@ import poster1 from "../assets/images/posters/poster1.jpg";
 import poster2 from "../assets/images/posters/poster2.jpg";
 import poster3 from "../assets/images/posters/poster3.jpg";
 import poster4 from "../assets/images/posters/poster4.jpg";
-
-export interface EventData {
-    id: number;
-    title: string;
-    description: string;
-    date: string;
-    hour: string;
-    category: string;
-    image: string;
-    bands: string[];
-    price: string;
-}
+import type { EventData } from "../types/event";
 
 export const events: EventData[] = [
     {

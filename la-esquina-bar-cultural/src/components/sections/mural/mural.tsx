@@ -2,13 +2,14 @@ import { useMemo, useState } from "react";
 
 import "./mural.css";
 
-import Container from "../../ui/container/container";
-import EventDrawer from "../../layout/eventdrawer/eventdrawer";
+import Container from "../../common/container/container";
+import EventDrawer from "./EventDrawer";
 
 import Poster from "./Poster";
 import { generatePosterLayout } from "./layout";
 
-import { events, type EventData } from "../../../constants/events";
+import { type EventData } from "../../../types/event";
+import { events } from "../../../data/events";
 
 export default function Mural() {
 

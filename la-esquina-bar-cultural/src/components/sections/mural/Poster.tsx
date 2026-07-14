@@ -1,5 +1,5 @@
 import type { PosterLayout } from "./layout";
-import type { EventData } from "../../../constants/events";
+import type { EventData } from "../../../types/event";
 
 interface Props {
 
