@@ -14,14 +14,16 @@ export default function Hero() {
             <img
                 src={hero}
                 className="hero-bg"
-                alt=""
+                alt="La Esquina"
             />
 
             <div className="overlay"/>
 
-            <Container>
+
+            <Container className="container-wide">
 
                 <div className="hero-content">
+
 
                     <img
                         src={logo}
@@ -29,19 +31,31 @@ export default function Hero() {
                         alt="La Esquina"
                     />
 
+
                     <span className="subtitle">
 
-                        Música • Gastronomia • Cultura
+                        Bar Cultural • São Roque
 
                     </span>
 
+
+                    <h1>
+
+                        A esquina onde
+                        a cidade se encontra.
+
+                    </h1>
+
+
                     <p>
 
-                        Um espaço dedicado à boa música, gastronomia,
-                        encontros e manifestações culturais no coração
-                        de São Roque.
+                        Música, cerveja artesanal,
+                        gastronomia criativa, livros,
+                        vinis e arte em um espaço
+                        feito para encontros reais.
 
                     </p>
+
 
                     <div className="buttons">
 
@@ -51,17 +65,20 @@ export default function Hero() {
 
                         </button>
 
+
                         <button className="secondary">
 
-                            Cardápio
+                            Conheça a La Esquina
 
                         </button>
 
                     </div>
 
+
                 </div>
 
             </Container>
+
 
         </section>
 

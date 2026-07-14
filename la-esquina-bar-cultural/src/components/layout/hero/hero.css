@@ -49,15 +49,9 @@
 
 .hero-content{
 
-    position:relative;
+    width:100%;
 
-    z-index:2;
-
-    max-width:760px;
-
-    text-align:center;
-
-    margin:auto;
+    max-width:1400px;
 
 }
 
@@ -160,5 +154,34 @@
         align-items:center;
 
     }
+
+}
+
+.hero h1{
+
+    font-size:4rem;
+
+    line-height:1.05;
+
+    max-width:850px;
+
+    margin:25px auto;
+
+    font-weight:700;
+
+}
+
+
+.hero p{
+
+    max-width:650px;
+
+    margin:auto;
+
+    font-size:1.35rem;
+
+    line-height:1.7;
+
+    color:var(--cream);
 
 }

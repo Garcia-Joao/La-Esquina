@@ -19,17 +19,34 @@ html{
 body{
 
     background:
+
         radial-gradient(
             circle at top,
             #2b0d0f,
             #010101 70%
         );
 
-    color:var(--text);
+    position:relative;
 
-    font-family:"Inter",sans-serif;
+}
 
-    overflow-x:hidden;
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    opacity:.04;
+
+    background-image:
+    url("/noise.png");
+
+    z-index:9999;
 
 }
 
@@ -59,7 +76,7 @@ button{
 
 }
 
-section{
+section:not(.hero){
 
     position:relative;
 
@@ -68,16 +85,18 @@ section{
 }
 
 h1,
-h2,
-h3{
+h2{
 
     font-family:"Rye",serif;
 
-    font-weight:400;
+}
 
-    color:var(--cream);
 
-    letter-spacing:1px;
+h3{
+
+    font-family:"Cormorant Garamond",serif;
+
+    font-weight:700;
 
 }
 

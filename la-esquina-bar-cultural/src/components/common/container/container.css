@@ -1,19 +1,33 @@
 .container{
 
-    width:min(
-        var(--container-width),
-        calc(100% - 64px)
-    );
+    width:100%;
 
-    margin:0 auto;
+    max-width:none;
+
+    padding:0 80px;
 
 }
+
+
+.container-wide{
+
+    max-width:1700px;
+
+}
+
+
+.container-narrow{
+
+    max-width:900px;
+
+}
+
 
 @media(max-width:768px){
 
     .container{
 
-        width:calc(100% - 32px);
+        padding:0 20px;
 
     }
 
