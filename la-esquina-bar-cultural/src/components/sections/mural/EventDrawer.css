@@ -89,29 +89,50 @@
 }
 
 /* BOTÃO DE FECHAR (CLOSE) - CORRIGIDO */
+/* ==========================================================================
+   BOTÃO DE FECHAR (CLOSE) - BLINDADO CONTRA CSS GLOBAL
+   ========================================================================== */
 .event-close {
     position: absolute;
     right: 16px;
     top: 16px;
-    width: 36px; /* Levemente maior */
-    height: 36px;
-    flex-shrink: 0; /* IMPEDE QUE FIQUE OVAL */
-    border-radius: 50%;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.08);
-    color: white;
+    
+    /* Força o tamanho perfeitamente quadrado */
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
+    
+    /* Remove a herança maldita do globals.css que deixa ele oval */
+    padding: 0 !important; 
+    margin: 0 !important;
+    line-height: 0 !important; 
+    
+    border-radius: 50% !important; /* Transforma o quadrado num círculo perfeito */
+    border: none !important;
+    
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    
+    background: rgba(255, 255, 255, 0.08) !important;
+    color: white !important;
     cursor: pointer;
     transition: 0.25s;
     z-index: 10;
-    font-size: 1.1rem; /* Garante que o 'X' tenha um bom tamanho */
+}
+
+/* Garante que o ícone 'X' (SVG) apareça com o tamanho e cor corretos */
+.event-close svg {
+    width: 16px !important;
+    height: 16px !important;
+    fill: currentColor !important; /* Puxa a cor branca do botão */
+    display: block !important;
 }
 
 .event-close:hover {
-    background: var(--gold-light);
-    color: #220808;
+    background: var(--gold-light) !important;
+    color: #220808 !important;
     transform: scale(1.05);
 }
 

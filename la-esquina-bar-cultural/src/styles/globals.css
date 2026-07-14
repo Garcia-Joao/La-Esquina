@@ -131,3 +131,20 @@ p{
     border-radius:50px;
 
 }
+
+/* CONTAINER PRINCIPAL DO SITE */
+.app-container {
+    /* Usando o mesmo gradiente luxuoso e escuro que estabelecemos antes */
+    background: radial-gradient(circle at top, #2b1111 0%, #110404 100%);
+    background-color: #110404;
+    min-height: 100vh;
+    color: var(--text, #ffffff);
+    overflow-x: hidden;
+}
+
+/* BLINDAGEM: Garante que nenhuma seção tente forçar um fundo próprio */
+.app-container > section,
+.app-container > div:not(.event-overlay):not(.section-separator) {
+    background: transparent !important;
+    background-image: none !important;
+}

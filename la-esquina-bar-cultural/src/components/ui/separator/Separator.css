@@ -1,0 +1,31 @@
+.section-separator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 650px; /* Reduzimos um pouco o comprimento dele também */
+    margin: 10px auto; /* Super compacto para remover os espaços vazios */
+    padding: 0 10px;
+}
+
+.separator-line {
+    flex-grow: 1;
+    height: 1px;
+    background: linear-gradient(
+        to var(--direction, right), 
+        transparent, 
+        var(--gold-light, #f7ab22)
+    );
+}
+
+.separator-line:last-child {
+    --direction: left;
+}
+
+.separator-star {
+    color: var(--gold-light, #f7ab22);
+    font-size: 1rem; /* Diminuído para harmonizar melhor */
+    margin: 0 12px;
+    text-shadow: 0 0 8px rgba(247, 171, 34, 0.4);
+    user-select: none;
+}

@@ -124,8 +124,8 @@ export default function Navbar() {
                     </span>
 
 
-                    <a href="#contato">
-                        Contato
+                    <a href="#local">
+                        Local
                     </a>
 
 
@@ -133,10 +133,10 @@ export default function Navbar() {
                         ✦
                     </span>
 
-
-                    <a href="#local">
-                        Local
+                    <a href="#contato">
+                        Contato
                     </a>
+
 
 
                 </nav>

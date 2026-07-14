@@ -1,0 +1,127 @@
+.location-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.location-container {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 50px;
+    align-items: center;
+}
+
+/* INFORMAÇÕES (LADO ESQUERDO) */
+.location-info {
+    display: flex;
+    flex-direction: column;
+    gap: 35px; /* Aumentamos o espaçamento para equilibrar a ausência do bloco de contato */
+}
+
+.location-subtitle {
+    font-size: 0.85rem;
+    color: var(--gold-light, #f7ab22);
+    letter-spacing: 3px;
+    font-weight: 600;
+}
+
+.location-title {
+    font-family: "Rye", serif;
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    color: #ffffff;
+    margin: 0;
+}
+
+.info-block h3 {
+    font-family: var(--font-display), sans-serif;
+    color: var(--gold-light, #f7ab22);
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+}
+
+.info-block p {
+    color: #f5e8c7;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Botão de rota */
+.directions-btn {
+    display: inline-block;
+    margin-top: 15px;
+    color: #3b1012;
+    background: var(--gold-light, #f7ab22);
+    padding: 12px 24px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(247, 171, 34, 0.2);
+}
+
+.directions-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(247, 171, 34, 0.35);
+}
+
+/* Horários */
+.hours-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.hours-list li {
+    display: flex;
+    justify-content: space-between;
+    color: #f5e8c7;
+    font-size: 1rem;
+    border-bottom: 1px dashed rgba(245, 232, 199, 0.15);
+    padding-bottom: 6px;
+}
+
+.hours-time {
+    font-weight: 600;
+    color: #ffffff;
+}
+
+/* MAPA (LADO DIREITO) */
+.location-map {
+    height: 450px;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid rgba(247, 171, 34, 0.2);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    background: #110404;
+}
+
+/* Efeito dark/gold personalizado sobre o mapa do Google */
+.map-iframe {
+    filter: grayscale(100%) invert(92%) contrast(110%) sepia(10%) hue-rotate(320deg);
+    transition: filter 0.5s ease;
+}
+
+.map-iframe:hover {
+    filter: grayscale(60%) invert(92%) contrast(100%) sepia(5%) hue-rotate(320deg);
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 900px) {
+    .location-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .location-map {
+        height: 350px;
+    }
+}

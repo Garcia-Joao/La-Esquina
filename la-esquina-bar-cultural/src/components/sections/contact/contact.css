@@ -1,0 +1,227 @@
+.contact-section {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 20px 120px;
+    position: relative;
+    z-index: 2;
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 60px;
+    align-items: center; /* Alinha verticalmente as colunas no centro */
+}
+
+/* COLUNA DE AÇÕES (ESQUERDA) */
+.contact-info-col {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.contact-subtitle {
+    font-size: 0.85rem;
+    color: var(--gold-light, #f7ab22);
+    letter-spacing: 3px;
+    font-weight: 600;
+}
+
+.contact-title {
+    font-family: "Rye", serif;
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
+    color: #ffffff;
+    margin: 0;
+}
+
+.contact-description {
+    color: #f5e8c7;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    opacity: 0.85;
+    margin-bottom: 10px;
+}
+
+/* BOTÃO DE RESERVA PRINCIPAL */
+.reserve-table-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--gold-light, #f7ab22);
+    color: #3b1012;
+    padding: 18px 28px;
+    border-radius: 14px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 30px rgba(247, 171, 34, 0.25);
+    max-width: 320px;
+}
+
+.reserve-table-btn svg {
+    transition: transform 0.3s ease;
+}
+
+.reserve-table-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(247, 171, 34, 0.4);
+    background: #ffffff; /* Sutil mudança de cor no hover */
+}
+
+.reserve-table-btn:hover svg {
+    transform: translateX(5px);
+}
+
+/* LINHA DE ÍCONES SOCIAIS */
+.social-icons-row {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.icon-only-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(247, 171, 34, 0.2);
+    color: #f5e8c7;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.icon-only-btn svg {
+    width: 22px;
+    height: 22px;
+}
+
+.icon-only-btn:hover {
+    background: rgba(247, 171, 34, 0.1);
+    border-color: var(--gold-light, #f7ab22);
+    color: var(--gold-light, #f7ab22);
+    transform: scale(1.1) translateY(-2px);
+    box-shadow: 0 8px 20px rgba(247, 171, 34, 0.15);
+}
+
+/* COLUNA DO FORMULÁRIO (DIREITA) */
+.contact-form-col {
+    background: rgba(20, 10, 10, 0.35);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    padding: 40px;
+    border-radius: 18px;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.4);
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    color: #f5e8c7;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    background: rgba(11, 4, 4, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: #ffffff;
+    font-size: 0.95rem;
+    outline: none;
+    font-family: inherit;
+    transition: all 0.3s ease;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: rgba(245, 232, 199, 0.3);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--gold-light, #f7ab22);
+    background: rgba(11, 4, 4, 0.8);
+    box-shadow: 0 0 10px rgba(247, 171, 34, 0.15);
+}
+
+.form-group select option {
+    background: #110404;
+    color: #ffffff;
+}
+
+.form-submit-btn {
+    background: transparent;
+    color: var(--gold-light, #f7ab22);
+    border: 1px solid rgba(247, 171, 34, 0.4);
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.form-submit-btn:hover {
+    background: var(--gold-light, #f7ab22);
+    color: #3b1012;
+    border-color: var(--gold-light, #f7ab22);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(247, 171, 34, 0.3);
+}
+
+.form-success-msg {
+    padding: 12px;
+    background: rgba(39, 174, 96, 0.15);
+    border: 1px solid #27ae60;
+    color: #2ecc71;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 0.9rem;
+    font-weight: 500;
+    animation: fadeIn 0.3s ease;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 900px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 45px;
+    }
+
+    .contact-form-col {
+        padding: 30px 25px;
+    }
+
+    .reserve-table-btn {
+        max-width: 100%;
+    }
+
+    .social-icons-row {
+        justify-content: center;
+    }
+    
+    .contact-info-col {
+        text-align: center;
+    }
+}
