@@ -11,45 +11,77 @@ import { generatePosterLayout } from "./layout";
 import type { EventData } from "../../../types/event";
 import { events } from "../../../data/events";
 
+
 export default function Mural() {
+
 
     const boardRef = useRef<HTMLDivElement>(null);
 
+
+
     const [boardSize, setBoardSize] = useState({
 
-        width: 1000,
+        width:1000,
 
-        height: 820
+        height:820
 
     });
 
+
+
+
+
+    const [hovered, setHovered] = useState<number | null>(null);
+
+
+    const [selected, setSelected] = useState<EventData | null>(null);
+
+
+
+
+
     useEffect(() => {
 
-        if (!boardRef.current)
+
+        if(!boardRef.current)
             return;
+
+
 
         const resize = () => {
 
-            if (!boardRef.current)
+
+            if(!boardRef.current)
                 return;
 
-            const width = boardRef.current.clientWidth;
 
-            const height = boardRef.current.clientHeight;
+
+            const width =
+                boardRef.current.clientWidth;
+
+
+
+            const height =
+                boardRef.current.clientHeight;
+
+
 
             setBoardSize(previous => {
 
-                if (
+
+                if(
 
                     previous.width === width &&
 
                     previous.height === height
 
-                ) {
+                ){
 
                     return previous;
 
                 }
+
+
 
                 return {
 
@@ -59,42 +91,80 @@ export default function Mural() {
 
                 };
 
+
             });
+
 
         };
 
+
+
         resize();
 
-        const observer = new ResizeObserver(resize);
+
+
+        const observer =
+            new ResizeObserver(resize);
+
+
 
         observer.observe(boardRef.current);
 
-        return () => observer.disconnect();
+
+
+        return () => {
+
+            observer.disconnect();
+
+        };
+
 
     }, []);
 
-    // Quantidade de colunas utilizada também para definir a altura
-    const columnCount =
-        events.length <= 4 ? 2 :
-        events.length <= 6 ? 3 :
-        events.length <= 9 ? 4 :
-        events.length <= 12 ? 5 :
-        6;
 
-    const rowCount = Math.ceil(events.length / columnCount);
 
-    // Cresce conforme aumenta a agenda
-    const boardHeight = Math.max(
 
-        820,
 
-        rowCount * 340
 
-    );
+
+    /*
+        Altura do mural.
+        Mantém espaço para composição artística.
+    */
+
+
+    const boardHeight = useMemo(()=>{
+
+
+        if(events.length <= 4)
+            return 850;
+
+
+
+        if(events.length <= 8)
+            return 1100;
+
+
+
+        return Math.ceil(events.length / 4) * 330;
+
+
+
+    },[]);
+
+
+
+
+
+
+
+
 
     const layouts = useMemo(
 
+
         () =>
+
 
             generatePosterLayout(
 
@@ -106,6 +176,8 @@ export default function Mural() {
 
             ),
 
+
+
         [
 
             boardSize.width,
@@ -116,13 +188,65 @@ export default function Mural() {
 
         ]
 
+
     );
 
-    const [hovered, setHovered] = useState<number | null>(null);
 
-    const [selected, setSelected] = useState<EventData | null>(null);
+
+
+
+
+
+
+    /*
+        Próximo evento da agenda
+    */
+
+
+    const nextEventId = useMemo(() => {
+
+
+        const now = new Date();
+
+
+
+        const upcoming = events
+
+            .filter(event =>
+
+                new Date(event.date) >= now
+
+            )
+
+
+            .sort((a,b)=>
+
+                new Date(a.date).getTime()
+
+                -
+
+                new Date(b.date).getTime()
+
+            );
+
+
+
+        return upcoming[0]?.id;
+
+
+
+    }, []);
+
+
+
+
+
+
+
+
 
     return (
+
 
         <section
 
@@ -132,85 +256,214 @@ export default function Mural() {
 
         >
 
+
+
             <Container>
+
 
                 <div className="mural-header">
 
-                    <span>ESTA SEMANA</span>
 
-                    <h2>Agenda Cultural</h2>
+                    <span>
+
+                        ESTA SEMANA
+
+                    </span>
+
+
+                    <h2>
+
+                        Agenda Cultural
+
+                    </h2>
+
 
                 </div>
 
+
+
+
+
+
+
                 <div className="mural-layout">
+
+
 
                     <div
 
+
                         ref={boardRef}
+
 
                         className="poster-board"
 
+
                         style={{
 
-                            height: boardHeight
+                            height:boardHeight
 
                         }}
 
+
                     >
+
+
 
                         {
 
-                            events.map((event, index) =>
+
+                            events.map((event,index)=>
+
+
 
                                 layouts[index] && (
 
+
                                     <Poster
+
 
                                         key={event.id}
 
+
                                         event={event}
 
-                                        layout={layouts[index]}
 
-                                        active={hovered === event.id}
 
-                                        onHover={() => setHovered(event.id)}
+                                        layout={{
 
-                                        onLeave={() => setHovered(null)}
+                                            ...layouts[index],
 
-                                        onClick={() => setSelected(event)}
+                                            featured:
+
+                                                event.id === nextEventId
+
+                                        }}
+
+
+
+                                        active={
+
+                                            hovered === event.id
+
+                                        }
+
+
+
+                                        onHover={() =>
+
+                                            setHovered(event.id)
+
+                                        }
+
+
+
+                                        onLeave={() =>
+
+                                            setHovered(null)
+
+                                        }
+
+
+
+                                        onClick={() =>
+
+                                            setSelected(event)
+
+                                        }
+
 
                                     />
 
+
                                 )
+
 
                             )
 
+
                         }
+
+
 
                     </div>
 
+
+
+
+
+
+
+
+
                     <aside className="agenda">
 
-                        <h3>Agenda</h3>
+
+
+                        <h3>
+
+                            Agenda
+
+                        </h3>
+
+
+
 
                         {
 
+
                             events.map(event => (
+
 
                                 <button
 
+
                                     key={event.id}
 
-                                    className={`event-item ${hovered === event.id ? "active" : ""}`}
 
-                                    onMouseEnter={() => setHovered(event.id)}
+                                    className={
 
-                                    onMouseLeave={() => setHovered(null)}
+                                        `event-item
 
-                                    onClick={() => setSelected(event)}
+                                        ${
+                                            hovered === event.id
+
+                                            ? "active"
+
+                                            : ""
+
+                                        }`
+
+                                    }
+
+
+
+                                    onMouseEnter={() =>
+
+                                        setHovered(event.id)
+
+                                    }
+
+
+
+                                    onMouseLeave={() =>
+
+                                        setHovered(null)
+
+                                    }
+
+
+
+                                    onClick={() =>
+
+                                        setSelected(event)
+
+                                    }
+
 
                                 >
+
+
 
                                     <strong>
 
@@ -218,33 +471,63 @@ export default function Mural() {
 
                                     </strong>
 
+
+
                                     <span>
 
                                         {event.date}
 
                                     </span>
 
+
+
                                 </button>
+
 
                             ))
 
+
                         }
+
+
 
                     </aside>
 
+
+
                 </div>
+
+
+
 
             </Container>
 
+
+
+
+
+
+
+
             <EventDrawer
+
 
                 event={selected}
 
-                onClose={() => setSelected(null)}
+
+                onClose={() =>
+
+                    setSelected(null)
+
+                }
+
 
             />
 
+
+
         </section>
+
 
     );
 

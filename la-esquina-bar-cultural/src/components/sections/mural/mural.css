@@ -1,152 +1,693 @@
-.mural-layout{
+.mural-layout {
+
 
     display:grid;
 
-    grid-template-columns:minmax(700px,2.7fr) minmax(330px,.9fr);
 
-    gap:36px;
+    grid-template-columns:
+
+        minmax(600px,2.4fr)
+        minmax(320px,.8fr);
+
+
+
+    gap:50px;
+
+
 
     align-items:start;
 
 }
 
-.poster-board{
+
+
+
+
+
+/* =========================
+   PAREDE DE POSTERS
+========================= */
+
+
+.poster-board {
+
 
     position:relative;
 
+
+
     width:100%;
 
-    height:clamp(760px,82vh,980px);
+
+
+    min-height:900px;
+
+
 
     overflow:hidden;
 
-    border-radius:28px;
 
-    padding:24px;
+
+    border-radius:30px;
+
+
+
+    padding:35px;
+
+
 
     background:
 
-        linear-gradient(
-            rgba(255,255,255,.02),
-            rgba(255,255,255,.01)
-        ),
 
         radial-gradient(
+
             circle at top,
-            rgba(198,56,46,.08),
-            transparent 60%
+
+            rgba(198,56,46,.15),
+
+            transparent 45%
+
         ),
 
-        #170808;
 
-    border:1px solid var(--border);
 
-    box-shadow:var(--shadow);
+        linear-gradient(
 
-}
+            135deg,
 
-.agenda{
+            #211010,
 
-    background:#160808;
+            #100606
 
-    border-radius:20px;
+        );
 
-    border:1px solid var(--border);
 
-    padding:28px;
 
-    position:sticky;
+    border:
 
-    top:110px;
+        1px solid rgba(255,255,255,.08);
 
-}
 
-.event-item{
 
-    width:100%;
+    box-shadow:
 
-    text-align:left;
+        0 40px 80px rgba(0,0,0,.45);
 
-    background:none;
 
-    border:none;
-
-    color:inherit;
-
-    padding:16px;
-
-    border-radius:12px;
-
-    transition:.25s;
-
-    display:flex;
-
-    flex-direction:column;
-
-    gap:4px;
 
 }
 
-.event-item:hover,
 
-.event-item.active{
 
-    background:rgba(247,171,34,.12);
 
-}
+/* textura da parede */
 
-.poster{
+
+.poster-board::before {
+
+
+    content:"";
+
 
     position:absolute;
 
-    cursor:pointer;
 
-    transition:
+    inset:0;
 
-        transform .35s,
 
-        box-shadow .35s;
+
+    background-image:url("/noise.png");
+
+
+
+    opacity:.05;
+
+
+
+    pointer-events:none;
+
 
 }
 
-.poster img{
+
+
+
+
+
+
+
+
+/* =========================
+   POSTERS
+========================= */
+
+
+.poster {
+
+
+    position:absolute;
+
+
+    cursor:pointer;
+
+
+    padding:0;
+
+
+    margin:0;
+
+
+    background:transparent;
+
+
+    border:none;
+
+
+    overflow:visible;
+
+
+
+    transition:
+
+        transform .45s cubic-bezier(.2,.8,.2,1);
+
+}
+
+
+
+
+
+.poster img {
+
 
     width:100%;
 
+
     height:100%;
 
-    object-fit:cover;
+
+
+    object-fit:contain;
+
+
 
     display:block;
 
-    border-radius:10px;
 
-    overflow:hidden;
 
-    box-shadow:
+    background:transparent;
 
-        0 12px 30px rgba(0,0,0,.35),
 
-        0 0 0 1px rgba(255,255,255,.04);
+
+    border:none;
+
+
+    outline:none;
+
+
+
+    border-radius:8px;
+
+
+
+    box-shadow:none;
+
+
 
     transition:
 
-        transform .3s,
 
-        box-shadow .3s;
+        transform .35s ease,
 
-}
+        filter .35s ease;
 
-.poster.active{
 
-    z-index:999;
 
 }
 
-.poster.active img{
 
-    box-shadow:
 
-        0 22px 55px rgba(0,0,0,.45);
+
+
+
+
+/* =========================
+   INTERAÇÃO
+========================= */
+
+
+.poster:hover {
+
+
+    z-index:100;
+
+
+
+    transform:
+
+
+        rotate(0deg)
+
+        translateY(-18px)
+
+        scale(1.05);
+
+
+
+}
+
+
+
+
+.poster:hover img {
+
+
+    transform:
+
+        translateY(-2px);
+
+
+
+    filter:
+
+
+        drop-shadow(
+
+            0 20px 30px rgba(0,0,0,.45)
+
+        );
+
+
+
+}
+
+
+
+
+
+
+
+.poster.active {
+
+
+    z-index:200;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =========================
+   PRÓXIMO EVENTO
+========================= */
+
+
+.poster.featured {
+
+
+    z-index:50;
+
+
+}
+
+
+
+
+
+.poster.featured img {
+
+
+    filter:
+
+
+        drop-shadow(
+
+            0 20px 35px rgba(247,171,34,.18)
+
+        );
+
+
+}
+
+
+
+
+/* remove qualquer efeito extra */
+
+
+.poster::before,
+.poster::after {
+
+
+    display:none;
+
+
+}
+
+
+
+
+
+
+
+.featured-label {
+
+
+    position:absolute;
+
+
+
+    top:18px;
+
+
+
+    left:18px;
+
+
+
+    background:#f7ab22;
+
+
+
+    color:#3b1012;
+
+
+
+    font-size:.65rem;
+
+
+
+    font-weight:bold;
+
+
+
+    letter-spacing:2px;
+
+
+
+    padding:8px 12px;
+
+
+
+    border-radius:20px;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/* =========================
+   AGENDA
+========================= */
+
+
+.agenda {
+
+
+    position:sticky;
+
+
+    top:120px;
+
+
+
+    background:
+
+
+        linear-gradient(
+
+
+            180deg,
+
+
+            rgba(255,255,255,.04),
+
+
+            rgba(0,0,0,.25)
+
+
+        );
+
+
+
+    border:
+
+
+        1px solid rgba(255,255,255,.08);
+
+
+
+    border-radius:25px;
+
+
+
+    padding:35px;
+
+
+
+    backdrop-filter:blur(15px);
+
+
+
+}
+
+
+
+
+
+
+
+.agenda h3 {
+
+
+    font-family:"Rye",serif;
+
+
+
+    color:var(--cream);
+
+
+
+    font-size:2.5rem;
+
+
+
+    margin-bottom:30px;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =========================
+   LISTA DE EVENTOS
+========================= */
+
+
+.event-item {
+
+
+    width:100%;
+
+
+
+    text-align:left;
+
+
+
+    background:none;
+
+
+
+    border:none;
+
+
+
+    color:white;
+
+
+
+    padding:20px 15px;
+
+
+
+    border-bottom:
+
+
+        1px solid rgba(255,255,255,.1);
+
+
+
+    cursor:pointer;
+
+
+
+    display:flex;
+
+
+
+    flex-direction:column;
+
+
+
+    gap:8px;
+
+
+
+    transition:.35s;
+
+
+
+}
+
+
+
+
+
+
+
+
+.event-item strong {
+
+
+    font-size:1.05rem;
+
+
+
+    color:#f5e8c7;
+
+
+
+}
+
+
+
+
+
+
+
+
+.event-item span {
+
+
+    color:#f7ab22;
+
+
+
+    font-size:.85rem;
+
+
+
+    letter-spacing:2px;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+.event-item:hover,
+
+.event-item.active {
+
+
+    transform:
+
+
+        translateX(10px);
+
+
+
+    background:
+
+
+        rgba(247,171,34,.08);
+
+
+
+    border-radius:12px;
+
+
+
+}
+
+
+
+
+
+
+
+
+.event-item.active strong {
+
+
+    color:#f7ab22;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+@media(max-width:1000px){
+
+
+    .mural-layout {
+
+
+        grid-template-columns:1fr;
+
+
+
+    }
+
+
+
+    .agenda {
+
+
+        position:relative;
+
+
+        top:0;
+
+
+
+    }
+
 
 }

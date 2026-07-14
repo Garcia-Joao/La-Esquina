@@ -1,6 +1,7 @@
 import type { PosterLayout } from "./layout";
 import type { EventData } from "../../../types/event";
 
+
 interface Props {
 
     event: EventData;
@@ -17,6 +18,8 @@ interface Props {
 
 }
 
+
+
 export default function Poster({
 
     event,
@@ -31,31 +34,75 @@ export default function Poster({
 
     onClick
 
+
 }: Props) {
+
 
     return (
 
         <article
 
-            className={`poster ${active ? "active" : ""}`}
+
+            className={
+
+                `poster
+
+                ${active ? "active" : ""}
+
+                ${layout.featured ? "featured" : ""}
+
+                `
+
+            }
+
+
 
             style={{
 
-                width: layout.width,
 
-                height: layout.height,
+                width:layout.width,
 
-                left: layout.x,
 
-                top: layout.y,
+                height:layout.height,
 
-                zIndex: active ? 999 : layout.zIndex,
 
-                transform: active
-                    ? `translateY(-18px) rotate(0deg) scale(1.08)`
-                    : `rotate(${layout.rotation}deg)`
+                left:layout.x,
+
+
+                top:layout.y,
+
+
+                zIndex:
+
+                    active
+
+                    ? 999
+
+                    : layout.zIndex,
+
+
+
+                transform:
+
+                    active
+
+                    ?
+
+                    `
+                    translateY(-18px)
+                    rotate(0deg)
+                    scale(1.08)
+                    `
+
+                    :
+
+                    `
+                    rotate(${layout.rotation}deg)
+                    `
 
             }}
+
+
 
             onMouseEnter={onHover}
 
@@ -63,7 +110,9 @@ export default function Poster({
 
             onClick={onClick}
 
+
         >
+
 
             <img
 
@@ -73,7 +122,21 @@ export default function Poster({
 
             />
 
-            <div className="poster-shadow" />
+
+
+            {
+                layout.featured && (
+
+                    <span className="featured-label">
+
+                        PRÓXIMO EVENTO
+
+                    </span>
+
+                )
+            }
+
+
 
         </article>
 

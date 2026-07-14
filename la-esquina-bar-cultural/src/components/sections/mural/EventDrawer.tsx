@@ -1,285 +1,131 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import {
+    FaInstagram,
+    FaSpotify,
+    FaYoutube,
+    FaTicketAlt,
+    FaTimes,
+    FaCalendarAlt,
+    FaClock
+} from "react-icons/fa";
 
 import "./EventDrawer.css";
-
 import type { EventData } from "../../../types/event";
 
 interface Props {
-
     event: EventData | null;
-
     onClose: () => void;
-
 }
 
-export default function EventDrawer({
+export default function EventDrawer({ event, onClose }: Props) {
+    const [isClosing, setIsClosing] = useState(false);
 
-    event,
+    // Reseta o estado de fechamento sempre que um novo evento for aberto
+    useEffect(() => {
+        if (event) {
+            setIsClosing(false);
+        }
+    }, [event]);
 
-    onClose
-
-}: Props) {
-
-    const [selectedArtist, setSelectedArtist] = useState<number | null>(null);
+    // Função que aciona a animação e aguarda antes de fechar de verdade
+    const handleClose = () => {
+        setIsClosing(true);
+        setTimeout(() => {
+            onClose();
+        }, 300); // Tempo exato da nossa animação no CSS
+    };
 
     if (!event) return null;
 
     return (
-
-        <div
-            className="drawer-overlay"
-            onClick={onClose}
+        <div 
+            className={`event-overlay ${isClosing ? "overlay-out" : ""}`} 
+            onClick={handleClose}
         >
-
-            <aside
-                className="drawer"
+            <div 
+                className={`event-container ${isClosing ? "card-out" : ""}`} 
                 onClick={(e) => e.stopPropagation()}
             >
-
-                <button
-                    className="drawer-close"
-                    onClick={onClose}
-                >
-                    ✕
-                </button>
-
-                <div className="drawer-poster">
-
-                    <img
-                        src={event.image}
-                        alt={event.title}
+                
+                {/* POSTER SOLTO À ESQUERDA */}
+                <div className="event-poster-floating">
+                    <img 
+                        src={event.image} 
+                        alt={event.title} 
+                        className="event-poster-img" 
                     />
-
                 </div>
 
-                <div className="drawer-content">
+                {/* CARD DE CONTEÚDO À DIREITA */}
+                <article className="event-card-compact">
+                    
+                    {/* BOTÃO DE FECHAR ATUALIZADO */}
+                    <button className="event-close" onClick={handleClose}>
+                        <FaTimes />
+                    </button>
+                    
+                    <header className="event-header">
+                        <span className="event-category">
+                            {event.category}
+                        </span>
+                        
+                        <h1>{event.title}</h1>
+                        
+                        <div className="event-meta">
+                            <span>
+                                <FaCalendarAlt /> {event.date}
+                            </span>
+                            <span>
+                                <FaClock /> {event.hour}
+                            </span>
+                            <span>
+                                <FaTicketAlt /> {event.price}
+                            </span>
+                        </div>
+                    </header>
 
-                    <span className="category">
-
-                        {event.category}
-
-                    </span>
-
-                    <h2>
-
-                        {event.title}
-
-                    </h2>
-
-                    <p>
-
+                    <p className="event-description">
                         {event.description}
-
                     </p>
 
-                    <div className="drawer-info">
-
-                        <div>
-
-                            <strong>DATA</strong>
-
-                            <span>
-
-                                {event.date}
-
-                            </span>
-
-                        </div>
-
-                        <div>
-
-                            <strong>HORÁRIO</strong>
-
-                            <span>
-
-                                {event.hour}
-
-                            </span>
-
-                        </div>
-
-                        <div>
-
-                            <strong>ENTRADA</strong>
-
-                            <span>
-
-                                {event.price}
-
-                            </span>
-
-                        </div>
-
-                    </div>
-
-                    <div className="artists">
-
-                        <h3>
-
-                            Atrações
-
-                        </h3>
-
-                        <div className="artist-list">
-
-                            {
-
-                                event.artists.map((artist) => (
-
-                                    <div
-
-                                        key={artist.id}
-
-                                        className={`artist-row ${selectedArtist === artist.id ? "open" : ""}`}
-
-                                    >
-
-                                        <button
-
-                                            className="artist-button"
-
-                                            onClick={() =>
-
-                                                setSelectedArtist(
-
-                                                    selectedArtist === artist.id
-
-                                                        ? null
-
-                                                        : artist.id
-
-                                                )
-
-                                            }
-
-                                        >
-
-                                            <div className="artist-info">
-
-                                                <strong>
-
-                                                    {artist.name}
-
-                                                </strong>
-
-                                                <small>
-
-                                                    {artist.description}
-
-                                                </small>
-
-                                            </div>
-
-                                        </button>
-
-                                        <div className="artist-links">
-
-                                            {
-
-                                                artist.instagram && (
-
-                                                    <a
-
-                                                        href={artist.instagram}
-
-                                                        target="_blank"
-
-                                                        rel="noreferrer"
-
-                                                    >
-
-                                                        Instagram
-
-                                                    </a>
-
-                                                )
-
-                                            }
-
-                                            {
-
-                                                artist.spotify && (
-
-                                                    <a
-
-                                                        href={artist.spotify}
-
-                                                        target="_blank"
-
-                                                        rel="noreferrer"
-
-                                                    >
-
-                                                        Spotify
-
-                                                    </a>
-
-                                                )
-
-                                            }
-
-                                            {
-
-                                                artist.youtube && (
-
-                                                    <a
-
-                                                        href={artist.youtube}
-
-                                                        target="_blank"
-
-                                                        rel="noreferrer"
-
-                                                    >
-
-                                                        YouTube
-
-                                                    </a>
-
-                                                )
-
-                                            }
-
-                                        </div>
-
+                    <section className="artists">
+                        <h2>Atrações</h2>
+                        <div className="artist-grid">
+                            {event.artists.map(artist => (
+                                <div className="artist" key={artist.id}>
+                                    <div>
+                                        <strong>{artist.name}</strong>
+                                        <small>{artist.description}</small>
                                     </div>
-
-                                ))
-
-                            }
-
+                                    <nav>
+                                        {artist.instagram && (
+                                            <a href={artist.instagram} target="_blank" rel="noreferrer">
+                                                <FaInstagram />
+                                            </a>
+                                        )}
+                                        {artist.spotify && (
+                                            <a href={artist.spotify} target="_blank" rel="noreferrer">
+                                                <FaSpotify />
+                                            </a>
+                                        )}
+                                        {artist.youtube && (
+                                            <a href={artist.youtube} target="_blank" rel="noreferrer">
+                                                <FaYoutube />
+                                            </a>
+                                        )}
+                                    </nav>
+                                </div>
+                            ))}
                         </div>
+                    </section>
 
-                    </div>
-
-                    <div className="drawer-actions">
-
-                        <button className="primary">
-
-                            Comprar Ingresso
-
-                        </button>
-
-                        <button
-
-                            className="secondary"
-
-                            onClick={onClose}
-
-                        >
-
-                            Fechar
-
-                        </button>
-
-                    </div>
-
-                </div>
-
-            </aside>
-
+                    <button className="ticket-button">
+                        <FaTicketAlt />
+                        Comprar ingresso
+                    </button>
+                    
+                </article>
+            </div>
         </div>
-
     );
-
 }

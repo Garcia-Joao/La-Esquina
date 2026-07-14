@@ -1,37 +1,25 @@
 export interface PosterLayout {
+
     x: number;
+
     y: number;
+
     width: number;
+
     height: number;
+
     rotation: number;
+
     zIndex: number;
+
+    featured?: boolean;
+
 }
 
 const ROTATIONS = [-8, -6, -4, -2, 2, 4, 6, 8];
 
-const BOARD_PADDING = 40;
-
 function random(min: number, max: number): number {
     return Math.random() * (max - min) + min;
-}
-
-function clamp(value: number, min: number, max: number): number {
-    return Math.max(min, Math.min(max, value));
-}
-
-function shuffle<T>(array: T[]): T[] {
-
-    const copy = [...array];
-
-    for (let i = copy.length - 1; i > 0; i--) {
-
-        const j = Math.floor(Math.random() * (i + 1));
-
-        [copy[i], copy[j]] = [copy[j], copy[i]];
-
-    }
-
-    return copy;
 }
 
 /**
@@ -60,118 +48,240 @@ function getPosterSize(amount: number) {
 /**
  * Quantidade de colunas baseada na quantidade de eventos.
  */
-function getColumnCount(amount: number) {
-
-    if (amount <= 4)
-        return 2;
-
-    if (amount <= 6)
-        return 3;
-
-    if (amount <= 9)
-        return 4;
-
-    if (amount <= 12)
-        return 5;
-
-    return 6;
-}
 
 export function generatePosterLayout(
-    amount: number,
-    muralWidth: number,
-    muralHeight: number
-): PosterLayout[] {
+    amount:number,
+    muralWidth:number,
+    muralHeight:number
+):PosterLayout[] {
 
-    const posters: PosterLayout[] = [];
 
-    const size = getPosterSize(amount);
+    const posters:PosterLayout[] = [];
 
-    const cols = getColumnCount(amount);
 
-    const rows = Math.ceil(amount / cols);
+    const padding = 50;
 
-    const usableWidth = muralWidth - BOARD_PADDING * 2;
-    const usableHeight = muralHeight - BOARD_PADDING * 2;
 
-    const cellWidth = usableWidth / cols;
-    const cellHeight = usableHeight / rows;
 
-    const slots: { row: number; col: number }[] = [];
+    /*
+        Poucos eventos:
+        Faz composição de mural
+    */
 
-    for (let row = 0; row < rows; row++) {
+    if(amount <= 4){
 
-        for (let col = 0; col < cols; col++) {
 
-            slots.push({
-                row,
-                col
+        const compositions = [
+
+            [
+                {
+                    x:.22,
+                    y:.15,
+                    w:.42,
+                    h:.62
+                }
+            ],
+
+
+            [
+
+                {
+                    x:.12,
+                    y:.18,
+                    w:.38,
+                    h:.55
+                },
+
+                {
+                    x:.52,
+                    y:.25,
+                    w:.36,
+                    h:.55
+                }
+
+            ],
+
+
+            [
+
+                {
+                    x:.08,
+                    y:.18,
+                    w:.35,
+                    h:.52
+                },
+
+
+                {
+                    x:.35,
+                    y:.08,
+                    w:.36,
+                    h:.58
+                },
+
+
+                {
+                    x:.62,
+                    y:.35,
+                    w:.28,
+                    h:.42
+                }
+
+            ],
+
+
+            [
+
+                {
+                    x:.08,
+                    y:.15,
+                    w:.32,
+                    h:.5
+                },
+
+
+                {
+                    x:.35,
+                    y:.08,
+                    w:.34,
+                    h:.56
+                },
+
+
+                {
+                    x:.63,
+                    y:.18,
+                    w:.28,
+                    h:.45
+                },
+
+
+                {
+                    x:.25,
+                    y:.55,
+                    w:.32,
+                    h:.38
+                }
+
+            ]
+
+        ];
+
+
+
+        const composition =
+            compositions[amount-1];
+
+
+
+        composition.forEach((item,index)=>{
+
+
+            posters.push({
+
+
+                x:
+                    item.x * muralWidth,
+
+
+                y:
+                    item.y * muralHeight,
+
+
+
+                width:
+                    item.w * muralWidth,
+
+
+
+                height:
+                    item.h * muralHeight,
+
+
+
+                rotation:
+                    ROTATIONS[
+                        index % ROTATIONS.length
+                    ],
+
+
+
+                zIndex:index+1
+
+
             });
 
-        }
+
+        });
+
+
+        return posters;
 
     }
 
-    const shuffled = shuffle(slots);
 
-    for (let i = 0; i < amount; i++) {
 
-        const slot = shuffled[i];
 
-        const x = clamp(
 
-            BOARD_PADDING +
+    /*
+        Muitos eventos:
+        continua usando distribuição orgânica
+    */
 
-            slot.col * cellWidth +
 
-            (cellWidth - size.width) / 2 +
+    const size = getPosterSize(amount);
 
-            random(-22, 22),
 
-            BOARD_PADDING,
 
-            muralWidth - size.width - BOARD_PADDING
+    for(let i=0;i<amount;i++){
 
-        );
-
-        const y = clamp(
-
-            BOARD_PADDING +
-
-            slot.row * cellHeight +
-
-            (cellHeight - size.height) / 2 +
-
-            random(-18, 18),
-
-            BOARD_PADDING,
-
-            muralHeight - size.height - BOARD_PADDING
-
-        );
 
         posters.push({
 
-            x,
 
-            y,
+            x:
+                random(
+                    padding,
+                    muralWidth-size.width-padding
+                ),
 
-            width: size.width,
 
-            height: size.height,
+
+            y:
+                random(
+                    padding,
+                    muralHeight-size.height-padding
+                ),
+
+
+
+            width:size.width,
+
+
+
+            height:size.height,
+
+
 
             rotation:
                 ROTATIONS[
                     Math.floor(
-                        Math.random() * ROTATIONS.length
+                        Math.random()*ROTATIONS.length
                     )
                 ],
 
-            zIndex: i + 1
+
+
+            zIndex:i+1
+
 
         });
 
+
     }
 
+
+
     return posters;
+
 }
