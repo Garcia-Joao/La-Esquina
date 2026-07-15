@@ -21,9 +21,9 @@ export default function Mural() {
 
     const [boardSize, setBoardSize] = useState({
 
-        width:1000,
+        width: 1000,
 
-        height:820
+        height: 820
 
     });
 
@@ -43,7 +43,7 @@ export default function Mural() {
     useEffect(() => {
 
 
-        if(!boardRef.current)
+        if (!boardRef.current)
             return;
 
 
@@ -51,7 +51,7 @@ export default function Mural() {
         const resize = () => {
 
 
-            if(!boardRef.current)
+            if (!boardRef.current)
                 return;
 
 
@@ -69,13 +69,13 @@ export default function Mural() {
             setBoardSize(previous => {
 
 
-                if(
+                if (
 
                     previous.width === width &&
 
                     previous.height === height
 
-                ){
+                ) {
 
                     return previous;
 
@@ -133,31 +133,29 @@ export default function Mural() {
     */
 
 
-    const boardHeight = useMemo(()=>{
+    /* Substitua o seu cálculo de boardHeight atual por este: */
+    const [isMobile, setIsMobile] = useState(false);
 
+    useEffect(() => {
+        const handleResize = () => setIsMobile(window.innerWidth < 768);
+        handleResize(); // Executa ao carregar
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
 
-        if(events.length <= 4)
-            return 850;
+    const boardHeight = useMemo(() => {
+        // Se for mobile, usamos uma altura bem menor para concentrar os pôsteres
+        if (isMobile) {
+            if (events.length <= 2) return 400; // Pôsteres grandes, pouco espaço
+            if (events.length <= 4) return 550; // Pôsteres médios, altura reduzida
+            return 700; // Caso tenha muitos eventos
+        }
 
-
-
-        if(events.length <= 8)
-            return 1100;
-
-
-
+        // Altura original para desktop
+        if (events.length <= 4) return 850;
+        if (events.length <= 8) return 1100;
         return Math.ceil(events.length / 4) * 330;
-
-
-
-    },[]);
-
-
-
-
-
-
-
+    }, [events.length, isMobile]);
 
 
     const layouts = useMemo(
@@ -219,7 +217,7 @@ export default function Mural() {
             )
 
 
-            .sort((a,b)=>
+            .sort((a, b) =>
 
                 new Date(a.date).getTime()
 
@@ -301,7 +299,7 @@ export default function Mural() {
 
                         style={{
 
-                            height:boardHeight
+                            height: boardHeight
 
                         }}
 
@@ -313,7 +311,7 @@ export default function Mural() {
                         {
 
 
-                            events.map((event,index)=>
+                            events.map((event, index) =>
 
 
 
@@ -425,8 +423,7 @@ export default function Mural() {
 
                                         `event-item
 
-                                        ${
-                                            hovered === event.id
+                                        ${hovered === event.id
 
                                             ? "active"
 

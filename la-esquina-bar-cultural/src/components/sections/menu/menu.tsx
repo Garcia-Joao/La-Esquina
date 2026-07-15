@@ -98,7 +98,7 @@ export default function Menu() {
                 <span className="menu-subtitle">EXPERIMENTE NOSSOS SABORES</span>
                 <h2 className="menu-title">O Cardápio</h2>
                 <p className="menu-description">
-                    Ingredientes selecionados, receitas autorais e acompanhamentos perfeitos 
+                    Ingredientes selecionados, receitas autorais e acompanhamentos perfeitos
                     para embalar as suas conversas.
                 </p>
             </div>
@@ -117,19 +117,22 @@ export default function Menu() {
             </div>
 
             {/* 3. Grid de Itens do Cardápio */}
-            <div className="menu-grid">
+            <div
+                key={activeTab} // <-- ESTA É A MÁGICA: Ao mudar a tab, a animação reinicia
+                className="menu-grid"
+            >
                 {currentCategory?.items.map((item) => (
-                    <div 
-                        key={item.id} 
+                    <div
+                        key={item.id}
                         className={`menu-item-card ${item.highlight ? "highlighted-card" : ""}`}
                     >
                         {item.highlight && <span className="item-badge">★ Sugestão</span>}
-                        
+
                         <div className="menu-item-header">
                             <h3 className="menu-item-name">{item.name}</h3>
                             <span className="menu-item-price">{item.price}</span>
                         </div>
-                        
+
                         <p className="menu-item-description">{item.description}</p>
                     </div>
                 ))}

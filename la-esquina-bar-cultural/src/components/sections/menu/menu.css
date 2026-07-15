@@ -182,3 +182,41 @@
         font-size: 0.85rem;
     }
 }
+
+/* Animação suave para troca de abas */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.menu-grid {
+    display: grid;
+    /* Usamos min(100%, 300px) para garantir que nunca ultrapasse a largura da tela */
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: 25px;
+    animation: fadeInUp 0.5s ease-out;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 600px) {
+    .menu-section {
+        padding: 40px 15px; /* Menos padding lateral para aproveitar melhor a tela */
+    }
+
+    .menu-tabs {
+        gap: 8px;
+    }
+    
+    .tab-btn {
+        padding: 10px 16px;
+        font-size: 0.85rem;
+    }
+
+    .menu-item-card {
+        padding: 20px; /* Card um pouco mais compacto no mobile */
+    }
+
+    .menu-title {
+        font-size: 2.2rem; /* Título levemente menor para não quebrar linha */
+    }
+}

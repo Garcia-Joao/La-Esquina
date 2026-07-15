@@ -1,15 +1,19 @@
+/* ==========================================================================
+   HERO SECTION - LA ESQUINA (COMPLETAMENTE AJUSTADO & OTIMIZADO)
+   ========================================================================== */
+
 .hero {
     min-height: 100vh;
     position: relative;
     overflow: hidden;
     display: flex;
     align-items: center;
+    justify-content: center;
 
-    /* 1. Forçamos o fundo a ser transparente para revelar o background unificado do site */
+    /* Revela o background unificado do site */
     background-color: transparent !important;
 
-    /* 2. Mantemos APENAS as luzes (glows) flutuando. 
-       Qualquer cor sólida de fundo foi completamente removida daqui! */
+    /* Glows/Luzes de fundo flutuantes */
     background-image: 
         radial-gradient(
             circle at 75% 45%,
@@ -23,19 +27,16 @@
         ) !important;
 }
 
+/* Vinheta suave para transição das seções */
 .hero::after {
     content: "";
     position: absolute;
     inset: 0;
-    
-    /* 3. Suavizamos a vinheta para que ela se misture ao fundo geral (#110404)
-       sem criar aquela "borda preta de corte" na transição para a próxima seção */
     background: radial-gradient(
         circle at center,
         transparent 60%,
         rgba(17, 4, 4, 0.6) 100%
     );
-    
     pointer-events: none;
 }
 
@@ -72,10 +73,11 @@
     }
 }
 
+/* CONTAINER PRINCIPAL (Desktop) */
 .hero-container {
     width: 100%;
-    /* Reduzimos o padding inferior para diminuir o espaçamento entre o hero e a próxima seção */
-    padding: 100px 7vw 30px;
+    /* 130px de padding superior garante espaço respirável abaixo da Navbar de 90px */
+    padding: 130px 7vw 50px;
     display: grid;
     grid-template-columns: 1fr .8fr;
     align-items: center;
@@ -103,13 +105,8 @@
     transition: 0.2s;
 }
 
-.hero-tags span:nth-child(2) {
-    animation-delay: .15s;
-}
-
-.hero-tags span:nth-child(3) {
-    animation-delay: .3s;
-}
+.hero-tags span:nth-child(2) { animation-delay: .15s; }
+.hero-tags span:nth-child(3) { animation-delay: .3s; }
 
 .hero-tags span:hover {
     background: #f7ab22;
@@ -128,6 +125,7 @@
     }
 }
 
+/* TIPOGRAFIA */
 .hero h1 {
     margin: 25px 0;
     font-family: "Rye", serif;
@@ -147,7 +145,7 @@
     line-height: 1.6;
 }
 
-/* BUTTONS */
+/* BOTÕES */
 .buttons {
     display: flex;
     gap: 20px;
@@ -191,7 +189,7 @@
 }
 
 .vinyl {
-    position: relative; /* Importante para as sub-imagens se alinharem */
+    position: relative;
     width: min(520px, 80vw);
     animation: spinVinyl 18s linear infinite;
     filter: drop-shadow(0 50px 80px rgba(0,0,0,.8));
@@ -202,20 +200,18 @@
     display: block;
 }
 
-/* A capa da playlist perfeitamente redonda e centralizada */
 .vinyl-cover {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 32%; /* Tamanho clássico da etiqueta central */
+    width: 32%;
     height: 32%;
     border-radius: 50%;
     object-fit: cover;
     z-index: 2;
 }
 
-/* O furinho do toca-discos no centro absoluto */
 .vinyl-hole {
     position: absolute;
     top: 50%;
@@ -223,21 +219,18 @@
     transform: translate(-50%, -50%);
     width: 3.5%;
     height: 3.5%;
-    background: #110404; /* Cor que combina com o fundo global do site */
+    background: #110404;
     border-radius: 50%;
     z-index: 3;
     box-shadow: inset 0 2px 4px rgba(0,0,0,0.8);
 }
 
 @keyframes spinVinyl {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
+/* SPOTIFY CARD */
 .spotify-card {
     position: absolute;
     right: -45px;
@@ -286,37 +279,114 @@
     box-shadow: 0 10px 25px rgba(247,171,34,.35);
 }
 
-/* RESPONSIVIDADE */
-@media(max-width:1000px) {
+
+/* ==========================================================================
+   RESPONSIVIDADE: TABLETS E MOBILE (Abaixo de 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .hero {
+        min-height: auto;
+        
+        /* Ajuste Crucial: Mudamos a direção e o alinhamento do Flexbox para evitar que
+           o navegador tente centralizar verticalmente e esmague o topo contra a Navbar fixa */
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        
+        /* Padding generoso descola as primeiras tags do topo ocupado pela Navbar (75px) */
+        padding-top: 130px; 
+        padding-bottom: 65px;
+    }
+
     .hero-container {
         grid-template-columns: 1fr;
         text-align: center;
-        padding-top: 120px;
+        
+        /* Removemos o padding de topo interno para herdar o padding-top purificado do pai (.hero) */
+        padding: 0 24px;
+        gap: 45px;
+    }
+
+    /* Otimização de performance: desativamos as animações de filtros e glows complexos no celular */
+    .hero-glow {
+        width: 300px;
+        height: 300px;
+        right: 0;
+        top: 15%;
+        transform: none;
+        animation: none;
+        opacity: 0.35;
+    }
+
+    /* Centralizações textuais */
+    .hero-tags {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .hero-tags span {
+        padding: 6px 14px;
+        font-size: 0.7rem;
+    }
+
+    .hero h1 {
+        font-size: clamp(2.4rem, 8vw, 3.8rem);
+        margin: 15px 0;
     }
 
     .hero p {
-        margin: auto;
-    }
-
-    .hero-tags {
-        justify-content: center;
+        margin: 0 auto;
+        font-size: 1.1rem;
+        max-width: 100%;
     }
 
     .buttons {
         justify-content: center;
+        gap: 12px;
     }
 
+    .hero-content button {
+        padding: 12px 24px;
+        font-size: 0.95rem;
+    }
+
+    /* Ajuste da área do Vinil */
     .hero-brand {
-        margin-top: 50px;
+        margin-top: 20px;
+        width: 100%;
+    }
+
+    .vinyl {
+        width: min(340px, 75vw);
+    }
+
+    /* Spotify Card reposicionado na parte de baixo de forma harmônica e sem vazar as margens */
+    .spotify-card {
+        position: relative;
+        right: auto;
+        bottom: auto;
+        margin: -25px auto 0; /* Sobrepõe levemente o vinil para simular profundidade */
+        width: 260px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
     }
 }
 
-@media(max-width:600px) {
+/* Celulares Extra Pequenos (Ex: iPhone SE) */
+@media (max-width: 400px) {
     .hero h1 {
-        font-size: 3rem;
+        font-size: 2.1rem;
     }
 
-    .spotify-card {
-        right: -10px;
+    /* Empilhamento de botões para facilitar cliques touch sem esmagar o layout */
+    .buttons {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .hero-content button {
+        width: 100%;
+        max-width: 280px;
     }
 }

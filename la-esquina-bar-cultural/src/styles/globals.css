@@ -148,3 +148,40 @@ p{
     background: transparent !important;
     background-image: none !important;
 }
+
+/* ==========================================================================
+   OTIMIZAÇÕES MOBILE GLOBAIS (Telas até 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* Ajuste de tipografia global fluido */
+    html {
+        font-size: 14px; 
+    }
+
+    /* A MÁGICA ESTÁ AQUI: 
+      Aplica o padding reduzido em todas as seções, EXCETO no Hero.
+      Assim, o Hero fica livre para usar os 130px dele e fugir da Navbar! 
+    */
+    .app-container > section:not(.hero) {
+        padding: 60px 16px !important; 
+    }
+
+    /* Ajuste para os separadores não ficarem gigantes */
+    .app-container > .separator-container, 
+    .app-container > hr {
+        margin: 20px 0 !important;
+        opacity: 0.5;
+    }
+
+    /* Força itens de grid a empilharem */
+    .grid-mobile-stack {
+        grid-template-columns: 1fr !important;
+        gap: 30px !important;
+    }
+}
+
+/* Prevenção contra estouro de layout (Scroll horizontal fantasma) */
+html, body {
+    max-width: 100vw;
+    overflow-x: hidden;
+}

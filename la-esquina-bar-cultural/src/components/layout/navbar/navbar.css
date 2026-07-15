@@ -1,501 +1,235 @@
 .navbar {
-
-
-    position:fixed;
-
-
-    top:0;
-    left:0;
-    right:0;
-
-
-    z-index:1000;
-
-
-
-    background:
-        linear-gradient(
-            180deg,
-            rgba(100,18,20,.94),
-            rgba(74,12,15,.94)
-        );
-
-
-
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
-
-
-
-    border-top:2px solid #f7ab22;
-    border-bottom:2px solid #f7ab22;
-
-
-
-    box-shadow:
-        0 10px 30px rgba(0,0,0,.35);
-
-
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: linear-gradient(
+        180deg,
+        rgba(100, 18, 20, 0.94),
+        rgba(74, 12, 15, 0.94)
+    );
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    
+    /* Moldura dourada original restaurada */
+    border-top: 2px solid #f7ab22;
+    border-bottom: 2px solid #f7ab22;
+    
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    transition: all 0.3s ease;
 }
-
-
-
-
-
-
-
-
-/* ================= CONTAINER ================= */
 
 
 .navbar-container {
-
-
-    width:100%;
-
-
-    height:90px;
-
-
-
-    padding:
-        0 clamp(25px,5vw,80px);
-
-
-
-    display:flex;
-
-
-    align-items:center;
-
-
-
-    position:relative;
-
-
-
-    transition:
-        height .45s cubic-bezier(.4,0,.2,1);
-
+    width: 100%;
+    height: 90px;
+    padding: 0 clamp(25px, 5vw, 80px);
+    display: flex;
+    align-items: center;
+    position: relative;
+    transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-
-
-
-
-
-
-
-
-/* ================= LOGO ================= */
-
-
+/* LOGO CENTRALIZADO */
 .navbar-logo {
-
-
-    position:absolute;
-
-
-    left:50%;
-
-
-    top:50%;
-
-
-
-    transform:
-        translate(-50%,-30%);
-
-
-
-    display:flex;
-
-
-    justify-content:center;
-
-
-    align-items:center;
-
-
-
-    width:
-        clamp(150px,13vw,210px);
-
-
-
-    z-index:10;
-
-
-
-    transition:
-        width .45s ease;
-
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -30%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: clamp(150px, 13vw, 210px);
+    z-index: 10;
+    transition: all 0.4s ease;
 }
-
-
-
-
 
 .navbar-logo img {
-
-
-    width:100%;
-
-
-    height:auto;
-
-
-
-    filter:
-        drop-shadow(
-            0 12px 25px rgba(0,0,0,.55)
-        );
-
-
-
-    transition:
-        transform .3s ease;
-
+    width: 100%;
+    height: auto;
+    filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.5));
 }
 
-
-
-
-
-.navbar-logo:hover img {
-
-
-    transform:
-        rotate(-3deg)
-        scale(1.05);
-
-}
-
-
-
-
-
-
-
-
-
-/* ================= MENU ================= */
-
-
+/* MENU DESKTOP */
 .navbar-menu {
-
-
-    display:flex;
-
-
-    align-items:center;
-
-
-
-    gap:
-        clamp(10px,1.5vw,22px);
-
-
-
-    position:absolute;
-
-
-    top:50%;
-
-
-
-    transform:
-        translateY(-50%);
-
-
-
-    z-index:2;
-
+    display: flex;
+    align-items: center;
+    gap: clamp(10px, 1.5vw, 22px);
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
 }
 
-
-
-
-/* menu começa no centro */
-
-
-.navbar-menu.left {
-
-
-    right:50%;
-
-
-    margin-right:
-        clamp(90px,8vw,140px);
-
-}
-
-
-
-
-.navbar-menu.right {
-
-
-    left:50%;
-
-
-    margin-left:
-        clamp(90px,8vw,140px);
-
-}
-
-
-
-
-
-
-
+.navbar-menu.left { right: 50%; margin-right: clamp(90px, 8vw, 140px); }
+.navbar-menu.right { left: 50%; margin-left: clamp(90px, 8vw, 140px); }
 
 .navbar-menu a {
-
-
-    position:relative;
-
-
-
-    color:#feef9e;
-
-
-
-    text-decoration:none;
-
-
-
-    font-family:var(--font-display);
-
-
-
-    font-size:
-        clamp(1rem,1.3vw,1.35rem);
-
-
-
-    font-weight:400;
-
-
-
-    letter-spacing:.05em;
-
-
-
-    white-space:nowrap;
-
-
-
-    transition:
-        color .25s ease;
-
+    color: #feef9e;
+    text-decoration: none;
+    font-family: var(--font-display), sans-serif;
+    font-size: clamp(1rem, 1.3vw, 1.35rem);
+    letter-spacing: 0.05em;
+    position: relative;
+    transition: color 0.25s ease;
 }
 
-
-
-
-
-
-.navbar-menu a:hover {
-
-
-    color:#f7ab22;
-
-}
-
-
-
-
+.navbar-menu a:hover { color: #f7ab22; }
 
 .navbar-menu a::after {
-
-
-    content:"";
-
-
-    position:absolute;
-
-
-    bottom:-8px;
-
-
-    left:50%;
-
-
-
-    width:0;
-
-
-    height:2px;
-
-
-
-    background:#f7ab22;
-
-
-
-    transform:
-        translateX(-50%);
-
-
-
-    transition:
-        width .25s ease;
-
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    width: 0;
+    height: 1px;
+    background: #f7ab22;
+    transform: translateX(-50%);
+    transition: width 0.25s ease;
 }
 
-
-
-
-.navbar-menu a:hover::after {
-
-
-    width:100%;
-
-}
-
-
-
-
-
+.navbar-menu a:hover::after { width: 100%; }
 
 .separator {
-
-
-    color:#c6382e;
-
-
-    font-size:.8rem;
-
-
-    opacity:.9;
-
+    color: #c6382e;
+    font-size: 0.8rem;
+    opacity: 0.8;
 }
 
-
-
-
-
-
-
-
-
-/* ================= SCROLL ================= */
-
-
-.navbar.scrolled .navbar-container {
-
-
-    height:68px;
-
-}
-
-
-
-
+/* SCROLL EFFECT */
+.navbar.scrolled .navbar-container { height: 70px; }
 .navbar.scrolled .navbar-logo {
-
-
-    width:
-        clamp(105px,8vw,135px);
-
-
-    transform:
-        translate(-50%,-35%);
-
+    width: clamp(110px, 8vw, 140px);
+    transform: translate(-50%, -35%);
 }
 
-
-
-
-
-
-
-
-
-/* ================= TABLET ================= */
-
-
-@media(max-width:1100px){
-
-
-    .navbar-menu.left {
-
-
-        margin-right:
-            70px;
-
-    }
-
-
-    .navbar-menu.right {
-
-
-        margin-left:
-            70px;
-
-    }
-
-
-
-    .navbar-menu a {
-
-
-        font-size:1rem;
-
-    }
-
-
+/* ================= BOTÃO CLEAN MOBILE ================= */
+.clean-menu-toggle {
+    display: none;
+    flex-direction: column;
+    align-items: flex-end;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 1010;
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
 }
 
+.clean-menu-toggle span {
+    color: #feef9e;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    transition: color 0.3s ease;
+}
 
+.clean-menu-toggle .toggle-line {
+    width: 20px;
+    height: 1px;
+    background-color: #f7ab22;
+    margin-top: 4px;
+    transition: all 0.3s ease;
+}
 
+.clean-menu-toggle.active span { color: #f7ab22; }
+.clean-menu-toggle.active .toggle-line { width: 32px; }
 
+/* ================= DROPDOWN CLEAN MOBILE ================= */
+.navbar-clean-dropdown {
+    display: none;
+}
 
+/* ================= MEDIA QUERIES OTIMIZADAS ================= */
+@media (max-width: 1100px) {
+    .navbar-menu.left { margin-right: 65px; }
+    .navbar-menu.right { margin-left: 65px; }
+    .navbar-menu a { font-size: 0.95rem; }
+}
 
-
-
-
-/* ================= MOBILE ================= */
-
-
-@media(max-width:768px){
-
-
+@media (max-width: 768px) {
     .navbar-container {
-
-
-        height:70px;
-
+        height: 75px;
     }
-
-
 
     .navbar-menu {
-
-
-        display:none;
-
+        display: none;
     }
 
-
-
+    /* O logo permanece perfeitamente no centro */
     .navbar-logo {
-
-
-        width:120px;
-
+        width: 120px;
+        transform: translate(-50%, -35%);
     }
-
-
-
+    
     .navbar.scrolled .navbar-logo {
-
-
-        width:90px;
-
+        width: 105px;
+        transform: translate(-50%, -35%);
     }
 
+    .clean-menu-toggle {
+        display: flex;
+    }
 
+    /* O painel agora desliza sutilmente APENAS por baixo da barra */
+/* O painel agora desliza sutilmente APENAS por baixo da barra */
+    .navbar-clean-dropdown {
+        display: block;
+        position: absolute;
+        top: 100%; /* Começa exatamente onde a navbar termina */
+        left: 0;
+        width: 100%;
+        background: linear-gradient(
+            180deg,
+            rgba(74, 12, 15, 0.96),
+            rgba(45, 8, 10, 0.98)
+        );
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        
+        /* Moldura dourada inferior na base do menu aberto */
+        border-bottom: 2px solid #f7ab22;
+        
+        /* Efeito de cortina sanfona */
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .navbar-clean-dropdown.open {
+        max-height: 320px; /* Altura ideal para conter os links */
+    }
+
+    /* Distribuição em Grid (2 colunas) organizada e limpa */
+    .dropdown-links-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        padding: 30px 25px;
+        text-align: center;
+    }
+
+    .dropdown-links-grid a {
+        color: #feef9e;
+        text-decoration: none;
+        font-family: var(--font-display), sans-serif;
+        font-size: 1.15rem;
+        letter-spacing: 1px;
+        padding: 12px;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(247, 171, 34, 0.05);
+        transition: all 0.2s ease;
+    }
+
+    .dropdown-links-grid a:active {
+        background: rgba(247, 171, 34, 0.08);
+        color: #f7ab22;
+        border-color: rgba(247, 171, 34, 0.2);
+    }
 }

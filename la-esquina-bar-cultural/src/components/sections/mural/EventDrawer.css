@@ -303,32 +303,44 @@
    7. RESPONSIVIDADE (MOBILE)
    ========================================================================== */
 @media(max-width: 768px) {
+    .event-overlay {
+        padding: 15px;
+        align-items: flex-start; /* Joga o conteúdo pro topo pra permitir scroll seguro */
+        overflow-y: auto; /* Habilita rolagem caso o celular seja pequeno */
+    }
+
     .event-container {
         flex-direction: column;
-        gap: 20px;
+        gap: 15px;
+        margin: 20px auto 40px; /* Margens seguras */
+        animation: none; /* Remove a animação complexa que causa lag no celular */
     }
 
     .event-poster-floating {
-        width: 180px;
-        animation: none;
+        width: 160px; /* Poster menor e centralizado */
+        margin: 0 auto;
+        animation: none; /* Desliga o efeito de flutuação para poupar bateria */
         transform: none;
     }
 
     .event-card-compact {
         width: 100%;
-        padding: 20px;
-        gap: 12px;
+        padding: 24px;
+        gap: 16px;
     }
 
-    .event-header, 
-    .event-description, 
-    .event-meta {
-        text-align: center;
-        align-items: center;
-        justify-content: center;
-    }
-    
+    /* Mantém os textos alinhados à esquerda para leitura limpa */
     .event-header {
-        padding-right: 0;
+        padding-right: 35px; /* Espaço sagrado pro botão de fechar não sobrepor o texto */
+    }
+
+    .event-close {
+        top: 16px;
+        right: 16px;
+    }
+
+    .artist nav a {
+        width: 38px; /* Botões de redes sociais ligeiramente maiores no touch */
+        height: 38px;
     }
 }

@@ -2,7 +2,7 @@ import "./location.css";
 
 export default function Location() {
     // Endereço real do Clube Come Together
-    const address = "R. Marechal Deodoro da Fonseca, 244 - Centro, São Roque - SP, 18130-070";
+    const address = "R. Prof. Joaquim de Oliveira, 5 - Centro, São Roque - SP, 18130-140";
     const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
 
     return (
@@ -50,7 +50,7 @@ export default function Location() {
                 <div className="location-map">
                     <iframe
                         title="Mapa La Esquina"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.990028296246!2d-47.13646182389224!3d-23.5328610605474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cf0d54800af767%3A0xd9b40e2662a26e56!2sClube%20Come%20Together!5e0!3m2!1spt-BR!2sbr!4v1784054593956!5m2!1spt-BR!2sbr"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.992116350946!2d-47.13819732389232!3d-23.532785960544516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94cf0d54bbf5e01d%3A0x33f6cf0144405cf2!2sR.%20Prof.%20Joaquim%20de%20Oliveira%2C%205%20-%20Centro%2C%20S%C3%A3o%20Roque%20-%20SP%2C%2018130-140!5e0!3m2!1spt-BR!2sbr!4v1784157344614!5m2!1spt-BR!2sbr"
                         width="100%"
                         height="100%"
                         style={{ border: 0 }}

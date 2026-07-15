@@ -1,541 +1,215 @@
-.about{
+/* ==========================================================================
+   ABOUT SECTION - LA ESQUINA
+   ========================================================================== */
 
-
-    position:relative;
-
-
-    padding:
-
-        160px 7vw;
-
-
-
-    overflow:hidden;
-
-
-
+.about {
+    position: relative;
+    padding: 160px 7vw;
+    overflow: hidden;
     background:
-
-
         radial-gradient(
             circle at 80% 40%,
-            rgba(247,171,34,.12),
+            rgba(247, 171, 34, 0.12),
             transparent 30%
         ),
-
-
-
         linear-gradient(
-
             180deg,
-
             var(--wine),
-
-            rgb(14,8,8)
-
+            rgb(14, 8, 8)
         );
-
 }
 
-
-
-
-.about::before{
-
-
-    content:"";
-
-
-    position:absolute;
-
-
-    width:500px;
-
-
-    height:500px;
-
-
-    right:-200px;
-
-
-    top:20%;
-
-
-
-    background:
-
-        radial-gradient(
-            circle,
-            rgba(247,171,34,.12),
-            transparent 70%
-        );
-
+/* Luz de fundo do bloco About */
+.about::before {
+    content: "";
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    right: -200px;
+    top: 20%;
+    background: radial-gradient(
+        circle,
+        rgba(247, 171, 34, 0.12),
+        transparent 70%
+    );
+    pointer-events: none;
 }
 
-
-
-.about-grid{
-
-
-    position:relative;
-
-
-    z-index:2;
-
-
-
-    display:grid;
-
-
-
-    grid-template-columns:
-
-        1.1fr .9fr;
-
-
-
-    gap:
-
-        8vw;
-
-
-
-    align-items:center;
-
-
-
-    max-width:1700px;
-
-
-
-    margin:auto;
-
+/* GRID PRINCIPAL */
+.about-grid {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 8vw;
+    align-items: center;
+    max-width: 1700px;
+    margin: auto;
 }
 
-
-
-
-
-
-
-.about-label{
-
-
-    display:inline-block;
-
-
-
-    margin-bottom:35px;
-
-
-
-    color:var(--gold-light);
-
-
-
-    letter-spacing:6px;
-
-
-
-    font-size:.8rem;
-
-
-
-    font-weight:700;
-
+/* ================= LADO ESQUERDO ================= */
+.about-label {
+    display: inline-block;
+    margin-bottom: 35px;
+    color: var(--gold-light, #f7ab22);
+    letter-spacing: 6px;
+    font-size: 0.8rem;
+    font-weight: 700;
 }
 
-
-
-
-
-
-
-
-.about-left h2{
-
-
-    font-family:"Rye",serif;
-
-
-
-    font-size: clamp(4rem,7vw,7rem);
-
-
-
-    line-height:1.1;
-
-
-
-
-    margin-bottom:45px;
-
-
-
-    color:var(--cream);
-
-
-
-    text-transform:uppercase;
-
+.about-left h2 {
+    font-family: "Rye", serif;
+    /* Reduzimos o mínimo do clamp para 2.8rem para caber "HISTÓRIAS" no celular */
+    font-size: clamp(2.8rem, 6vw, 6.5rem);
+    line-height: 1.1;
+    margin-bottom: 40px;
+    color: var(--cream, #f5e8c7);
+    text-transform: uppercase;
 }
 
-
-
-
-
-
-
-
-.about-left p{
-
-
-    max-width:700px;
-
-
-
-    color:
-
-        rgba(255,255,255,.82);
-
-
-
-    font-size:1.2rem;
-
-
-
-    line-height:2;
-
-
-
-    margin-bottom:30px;
-
+.about-left p {
+    max-width: 700px;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 1.15rem;
+    line-height: 1.8;
+    margin-bottom: 25px;
 }
 
-
-
-
-
-
-
-
-
-/* DIREITA */
-
-
-
-.about-right{
-
-
-    display:flex;
-
-
-
-    flex-direction:column;
-
-
-
-    justify-content:center;
-
+/* ================= LADO DIREITO ================= */
+.about-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-
-
-
-
-
-
-
-.manifesto{
-
-
-    padding:
-
-        35px;
-
-
-
-    border-left:
-
-        3px solid var(--gold-light);
-
-
-
-    background:
-
-        rgba(0,0,0,.18);
-
-
-
-    backdrop-filter:blur(10px);
-
+.manifesto {
+    padding: 35px;
+    border-left: 3px solid var(--gold-light, #f7ab22);
+    background: rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 0 16px 16px 0; /* Suaviza as pontas direitas */
 }
 
-
-
-
-
-
-.manifesto span{
-
-
-    color:
-
-        var(--gold-light);
-
-
-
-    font-size:.75rem;
-
-
-
-    letter-spacing:4px;
-
+.manifesto span {
+    color: var(--gold-light, #f7ab22);
+    font-size: 0.75rem;
+    letter-spacing: 4px;
 }
 
-
-
-
-
-
-.manifesto h3{
-
-
-    margin-top:25px;
-
-
-
-    color:white;
-
-
-
-    font-size:
-
-        clamp(2rem,3vw,3rem);
-
-
-
-    line-height:1.2;
-
-
-
-    font-weight:700;
-
+.manifesto h3 {
+    margin-top: 20px;
+    color: white;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    line-height: 1.3;
+    font-weight: 700;
 }
 
-
-
-
-
-
-
-
-.divider{
-
-
-    width:140px;
-
-
-    height:3px;
-
-
-
-    background:
-
-        var(--gold-light);
-
-
-
-    margin:
-
-        50px 0;
-
+.divider {
+    width: 120px;
+    height: 2px;
+    background: var(--gold-light, #f7ab22);
+    margin: 45px 0;
+    opacity: 0.7;
 }
 
-
-
-
-
-
-
-
-.keywords{
-
-
-    display:flex;
-
-
-
-    flex-wrap:wrap;
-
-
-
-    gap:14px;
-
+.keywords {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
 }
 
-
-
-
-
-.keywords span{
-
-
-    border:
-
-        1px solid rgba(255,255,255,.18);
-
-
-
-    color:white;
-
-
-
-    padding:
-
-        12px 20px;
-
-
-
-    border-radius:999px;
-
-
-
-    letter-spacing:2px;
-
-
-
-    font-size:.75rem;
-
-
-
-    transition:.3s;
-
-
-
-    background:
-
-        rgba(255,255,255,.03);
-
+.keywords span {
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: white;
+    padding: 10px 18px;
+    border-radius: 999px;
+    letter-spacing: 1.5px;
+    font-size: 0.75rem;
+    transition: 0.3s ease;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(5px);
 }
 
-
-
-
-
-
-.keywords span:hover{
-
-
-    background:
-
-        var(--gold-light);
-
-
-
-    color:
-
-        var(--wine);
-
-
-
-    transform:
-
-        translateY(-5px);
-
+.keywords span:hover {
+    background: var(--gold-light, #f7ab22);
+    color: #3b1012;
+    border-color: var(--gold-light, #f7ab22);
+    transform: translateY(-4px);
+    box-shadow: 0 5px 15px rgba(247, 171, 34, 0.2);
 }
 
+/* ==========================================================================
+   RESPONSIVIDADE: TABLETS E TELAS MÉDIAS
+   ========================================================================== */
+@media (max-width: 1000px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+}
 
-
-
-
-
-
-
-
-@media(max-width:1000px){
-
-
-
-    .about{
-
-
-        padding:
-
-            100px 32px;
-
+/* ==========================================================================
+   RESPONSIVIDADE: MOBILE (Abaixo de 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+    /* O padding lateral e superior base agora é herdado do globals.css,
+       mas mantemos as proporções internas intactas */
+    
+    .about-grid {
+        gap: 50px;
     }
 
-
-
-
-    .about-grid{
-
-
-        grid-template-columns:1fr;
-
-
-        gap:70px;
-
+    .about-label {
+        margin-bottom: 20px;
+        letter-spacing: 4px;
     }
 
+    .about-left h2 {
+        /* Garante que o texto não quebre a tela para os lados */
+        font-size: clamp(2.5rem, 9vw, 3.5rem);
+        margin-bottom: 25px;
+    }
 
+    .about-left p {
+        font-size: 1.05rem;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
 
+    .manifesto {
+        padding: 25px 20px;
+    }
+
+    .manifesto h3 {
+        font-size: 1.7rem;
+        margin-top: 15px;
+    }
+
+    .divider {
+        margin: 35px 0;
+        width: 80px;
+    }
+
+    .keywords {
+        gap: 10px;
+    }
+
+    .keywords span {
+        padding: 8px 14px;
+        font-size: 0.7rem;
+    }
 }
 
-
-
-
-
-
-
-@media(max-width:700px){
-
-
-
-    .about{
-
-
-        padding:
-
-            80px 24px;
-
+/* ==========================================================================
+   RESPONSIVIDADE: MICRO TELAS (Ex: iPhone SE - 400px)
+   ========================================================================== */
+@media (max-width: 400px) {
+    .about-left h2 {
+        font-size: 2.3rem; /* Evita a quebra da palavra HISTÓRIAS a qualquer custo */
     }
-
-
-
-
-    .about-left h2{
-
-
-        font-size:
-
-            3rem;
-
+    
+    .manifesto h3 {
+        font-size: 1.5rem;
     }
-
-
-
-
-    .manifesto{
-
-
-        padding:
-
-            25px;
-
-    }
-
-
-
-
-    .manifesto h3{
-
-
-        font-size: 2rem;
-
-    }
-
-
-
 }

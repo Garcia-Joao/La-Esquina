@@ -20,7 +20,7 @@ function App() {
             <Separator />
             
             <About />
-            
+                
             <Separator />
             
             <Mural />
